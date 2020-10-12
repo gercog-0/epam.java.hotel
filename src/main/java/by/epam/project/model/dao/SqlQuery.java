@@ -1,0 +1,52 @@
+package by.epam.project.model.dao;
+
+public class SqlQuery {
+    /*
+    sql_query_users
+     */
+    public static final String FIND_ALL_USERS = "SELECT userId, login, email, name, surname, balance, " +
+            "phone, is_banned, is_activated, roleId FROM users WHERE roleId = ?";
+    public static final String FIND_USER_BY_ID = "SELECT userId, login, email, name, surname, balance, " +
+            "phone, is_banned, is_activated, roleId FROM users WHERE userId = ?";
+    public static final String FIND_USER_BY_EMAIL = "SELECT userId, login, email, name, surname, balance, " +
+            "phone, is_banned, is_activated, roleId FROM users WHERE email = ?";
+    public static final String FIND_USER_BY_PHONE = "SELECT userId, login, email, name, surname, balance, " +
+            "phone, is_banned, is_activated, roleId FROM users WHERE phone = ?";
+    public static final String ACTIVATE_USER = "UPDATE users SET is_activated = true WHERE login = ?";
+    public static final String BAN_USER = "UPDATE users SET is_banned = true WHERE login = ?";
+    public static final String UN_BANE_USER = "UPDATE users SET is_banned = false WHERE login = ?";
+    public static final String ADD_USER = "INSERT INTO users (login,email,name,surname,phone,balance," +
+            "is_banned,is_activated,roleId) VALUES (?,?,?,?,?,?,?,?,?)";
+    public static final String FIND_USER_BY_LOGIN = "SELECT userId, login, email, name, surname, " +
+            "balance, phone, is_banned, is_activated, roleId FROM users WHERE login = ?";
+    public static final String FIND_PASSWORD_BY_LOGIN = "SELECT password FROM users WHERE login = ?";
+    public static final String UPDATE_PASSWORD_BY_LOGIN = "UPDATE users SET password = ? WHERE login = ?";
+    public static final String UPDATE_BALANCE_BY_LOGIN = "UPDATE users SET balance = ? WHERE login = ?";
+
+    /*
+    sql_query_rooms
+     */
+    public static final String ADD_ROOM = "INSERT into rooms (number,comfort,price,place_amount, is_active) " +
+            "VALUES (?,?,?,?,?)";
+    public static final String FIND_ROOM_BY_NUMBER = "SELECT roomId, number, comfort, price, place_amount, " +
+            "is_active FROM rooms WHERE number = ?";
+    public static final String FIND_ALL_ROOMS = "SELECT roomId, number, comfort, price, place_amount, " +
+            "is_active FROM rooms";
+    public static final String FIND_ROOMS_BY_COMFORT = "SELECT roomId, number, comfort, price, place_amount, " +
+            "is_active WHERE comfort = ?";
+    public static final String FIND_ROOMS_BY_PRICE = "SELECT roomId, number, comfort, price, place_amount, " +
+            "is_active WHERE price = ?";
+    public static final String FIND_ROOMS_BY_PLACE_AMOUNT = "SELECT roomId, number, comfort, price, place_amount, " +
+            "is_active WHERE place_amount = ?";
+    public static final String FIND_ROOMS_BY_STATUS = "SELECT roomId, number, comfort, price, place_amount, " +
+            "is_active WHERE is_active = ?";
+    public static final String SET_ACTIVE_ROOM_STATUS = "UPDATE rooms SET is_active = true WHERE number = ?";
+    public static final String SET_INACTIVE_ROOM_STATUS = "UPDATE rooms SET is_active = false WHERE number = ?";
+    public static final String FIND_FREE_ROOMS = "SELECT roomId, roomNumber, comfort, price, place_amount, is_active " +
+            "FROM web_hotel.rooms WHERE comfort = ? AND place_amount >= ? AND is_active = true AND NOT EXISTS (SELECT bookingId, " +
+            "arrival_date, departure_date, booking_status, userId_fk, roomId_fk FROM web_hotel.bookings WHERE roomId = " +
+            "roomId_fk AND ((? BETWEEN arrival_date AND departure_date) OR (? BETWEEN arrival_date AND departure_date)))";
+
+    private SqlQuery() {
+    }
+}

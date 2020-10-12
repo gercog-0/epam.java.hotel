@@ -1,0 +1,27 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: USER
+  Date: 06.10.2020
+  Time: 23:26
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<c:choose>
+    <c:when test="${not empty language}"> <fmt:setLocale value="${language}"/></c:when>
+    <c:when test="${empty language}"> <fmt:setLocale value="en"/></c:when>
+</c:choose>
+
+<fmt:setBundle basename="pagecontent.language"/>
+
+<html>
+<body>
+<div class="layout-footer">
+    <div class="container">
+        <div class="layout-footer__copyright"><fmt:message key="footer.text"/></div>
+    </div>
+</div>
+</body>
+</html>
