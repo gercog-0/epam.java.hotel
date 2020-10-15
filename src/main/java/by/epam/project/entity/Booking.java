@@ -1,6 +1,8 @@
 package by.epam.project.entity;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.Optional;
 
 public class Booking extends Entity {
     public enum Status {
@@ -18,6 +20,11 @@ public class Booking extends Entity {
         public String getNameStatus() {
             return nameStatus;
         }
+
+        public static Optional<Booking.Status> getStatusByValue(String value) {
+            return Arrays.stream(Booking.Status.values()).
+                    filter(o -> o.getNameStatus().equals(value)).findAny();
+        }
     }
 
     private int bookingId;
@@ -26,6 +33,26 @@ public class Booking extends Entity {
     private Date arrivalDate;
     private Date departureDate;
     private Status status;
+    private double totalPrice;
+
+    public Booking(int bookingId, User user, Room room, Date arrivalDate, Date departureDate, Status status, double totalPrice) {
+        this.bookingId = bookingId;
+        this.user = user;
+        this.room = room;
+        this.arrivalDate = arrivalDate;
+        this.departureDate = departureDate;
+        this.status = status;
+        this.totalPrice = totalPrice;
+    }
+
+    public Booking(User user, Room room, Date arrivalDate, Date departureDate, Status status, double totalPrice) {
+        this.user = user;
+        this.room = room;
+        this.arrivalDate = arrivalDate;
+        this.departureDate = departureDate;
+        this.status = status;
+        this.totalPrice = totalPrice;
+    }
 
     public int getBookingId() {
         return bookingId;
@@ -75,6 +102,14 @@ public class Booking extends Entity {
         this.status = status;
     }
 
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -87,6 +122,9 @@ public class Booking extends Entity {
         Booking booking = (Booking) o;
 
         if (bookingId != booking.bookingId) {
+            return false;
+        }
+        if (Double.compare(booking.totalPrice, totalPrice) != 0) {
             return false;
         }
         if (user != null ? !user.equals(booking.user) : booking.user != null) {
@@ -106,12 +144,16 @@ public class Booking extends Entity {
 
     @Override
     public int hashCode() {
-        int result = bookingId;
+        int result;
+        long temp;
+        result = bookingId;
         result = 31 * result + (user != null ? user.hashCode() : 0);
         result = 31 * result + (room != null ? room.hashCode() : 0);
         result = 31 * result + (arrivalDate != null ? arrivalDate.hashCode() : 0);
         result = 31 * result + (departureDate != null ? departureDate.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);
+        temp = Double.doubleToLongBits(totalPrice);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 
@@ -124,6 +166,7 @@ public class Booking extends Entity {
         sb.append(", arrivalDate=").append(arrivalDate);
         sb.append(", departureDate=").append(departureDate);
         sb.append(", status=").append(status);
+        sb.append(", totalPrice=").append(totalPrice);
         sb.append('}');
         return sb.toString();
     }

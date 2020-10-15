@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static by.epam.project.util.RequestParameter.*;
+import static by.epam.project.util.RequestParameterName.*;
 
 
 public class ConfirmSignUpCommand implements Command {
@@ -33,13 +33,11 @@ public class ConfirmSignUpCommand implements Command {
                 request.setAttribute(MessageAttribute.ACTIVATION_MESSAGE, PropertiesMessageKey.SUCCESSFULLY_ACTIVATION);
                 router = new Router(PagePath.SIGN_IN);
             } else {
-                // Request error
                 router = new Router(PagePath.ERROR_404);
             }
         } catch (ServiceException exp) {
-            // Server error
             LOGGER.error(exp);
-            router = new Router(PagePath.ERROR_505);
+            router = new Router(PagePath.ERROR_500);
         }
         return router;
     }

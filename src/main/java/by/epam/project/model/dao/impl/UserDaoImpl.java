@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static by.epam.project.util.RequestParameter.*;
+import static by.epam.project.util.RequestParameterName.*;
 
 public class UserDaoImpl implements UserDao {
     private static UserDaoImpl instance = new UserDaoImpl();

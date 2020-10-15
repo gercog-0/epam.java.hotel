@@ -3,18 +3,20 @@ package by.epam.project.controller.command.impl;
 import by.epam.project.controller.Router;
 import by.epam.project.controller.command.Command;
 import by.epam.project.controller.command.MessageAttribute;
-import by.epam.project.controller.command.PagePath;
-
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-import static by.epam.project.util.RequestParameter.*;
+import static by.epam.project.util.RequestParameterName.*;
 
 public class ChangeLanguageCommand implements Command {
     @Override
     public Router execute(HttpServletRequest request) {
-        String page;
+        HttpSession session = request.getSession();
+
         String givenLanguage = request.getParameter(LANGUAGE);
-        request.getSession().setAttribute(MessageAttribute.LANGUAGE, givenLanguage);
-        return new Router(PagePath.HOME);
+        session.setAttribute(MessageAttribute.LANGUAGE, givenLanguage);
+        String currentPage = (String) session.getAttribute(CURRENT_PAGE);
+
+        return new Router(currentPage);
     }
 }

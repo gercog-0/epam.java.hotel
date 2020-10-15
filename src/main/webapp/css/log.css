@@ -116,5 +116,6 @@ button:hover span:after {
     color: #EF3B3A;
 }
 body {
-    background-size: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
 }

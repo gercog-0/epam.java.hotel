@@ -81,11 +81,6 @@ public class RoomDaoImpl implements RoomDao {
     }
 
     @Override
-    public List<Room> findByPrice(double price) throws DaoException {
-        return null;
-    }
-
-    @Override
     public List<Room> findByPlaceAmount(int placeAmount) throws DaoException {
         List<Room> allRooms = new ArrayList<>();
 
@@ -145,11 +140,6 @@ public class RoomDaoImpl implements RoomDao {
             throw new DaoException(exp);
         }
         return isUpdate;
-    }
-
-    @Override
-    public List<Room> sort(Comparator<Room> comparator) throws DaoException {
-        return null;
     }
 
     @Override

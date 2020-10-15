@@ -26,6 +26,7 @@
           rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/media.css">
     <title><fmt:message key="main_page.title"/></title>
 </head>
 
@@ -45,16 +46,17 @@
                         </div>
                         <c:choose>
                             <c:when test="${empty user}">
-                                <input type="hidden" name="command" value="passing_sign_in"/>
+                                <a href="controller?command=passing_sign_in" class="hotel-info__button"><fmt:message
+                                        key="main_page.business_card_button"/></a>
                             </c:when>
                             <c:when test="${not empty user}">
-                                <input type="hidden" name="command" value="passing_booking"/>
+                                <c:if test="${userRole != 'ADMINISTRATOR'}">
+                                    <a href="controller?command=passing_filter_rooms"
+                                       class="hotel-info__button"><fmt:message
+                                            key="main_page.business_card_button"/></a>
+                                </c:if>
                             </c:when>
                         </c:choose>
-                        <c:if test="${userRole != 'ADMINISTRATOR'}">
-                            <button class="hotel-info__button" type="button"><fmt:message
-                                    key="main_page.business_card_button"/></button>
-                        </c:if>
                     </div>
                 </div>
             </div>

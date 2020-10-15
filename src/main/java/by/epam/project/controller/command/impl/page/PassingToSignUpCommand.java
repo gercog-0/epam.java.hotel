@@ -1,4 +1,4 @@
-package by.epam.project.controller.command.impl;
+package by.epam.project.controller.command.impl.page;
 
 import by.epam.project.controller.Router;
 import by.epam.project.controller.command.Command;
@@ -6,9 +6,9 @@ import by.epam.project.controller.command.PagePath;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class PassingToActivationCommand implements Command {
+public class PassingToSignUpCommand implements Command {
     @Override
     public Router execute(HttpServletRequest request) {
-        return new Router(PagePath.ACTIVATION_INFO);
+        return new Router(PagePath.SIGN_UP);
     }
 }

@@ -5,7 +5,7 @@ import by.epam.project.validator.BaseValidator;
 import java.util.HashMap;
 import java.util.Map;
 
-import static by.epam.project.util.RequestParameter.*;
+import static by.epam.project.util.RequestParameterName.*;
 
 public class UserValidatorImpl implements BaseValidator {
     private static final String LOGIN_REGEX = "^[a-zA-Z0-9_]{3,25}$";

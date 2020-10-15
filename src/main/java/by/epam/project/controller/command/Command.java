@@ -4,7 +4,7 @@ import by.epam.project.controller.Router;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static by.epam.project.util.RequestParameter.*;
+import static by.epam.project.util.RequestParameterName.*;
 
 public interface Command {
     Router execute(HttpServletRequest request);

@@ -8,12 +8,11 @@ import by.epam.project.controller.command.PropertiesMessageKey;
 import by.epam.project.controller.command.impl.util.CommandUtil;
 import by.epam.project.entity.User;
 import by.epam.project.exception.ServiceException;
-import by.epam.project.model.service.EmailMessageService;
 import by.epam.project.model.service.impl.UserServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static by.epam.project.util.RequestParameter.*;
+import static by.epam.project.util.RequestParameterName.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -44,7 +43,7 @@ public class SignInCommand implements Command {
                 if (user.isBanned()) {
                     router.setCurrentPage(PagePath.BANNED_INFO);
                 } else if (!user.isActivated()) {
-                    router.setCurrentPage(PagePath.ACTIVATION_INFO);
+                    router.setCurrentPage(PagePath.NOTIFICATION);
                 } else {
                     session.setAttribute(MessageAttribute.USER, user);
                     session.setAttribute(MessageAttribute.USER_ROLE, user.getRole());

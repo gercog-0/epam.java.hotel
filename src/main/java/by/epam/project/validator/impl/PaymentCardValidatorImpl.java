@@ -5,7 +5,7 @@ import by.epam.project.validator.BaseValidator;
 import java.util.HashMap;
 import java.util.Map;
 
-import static by.epam.project.util.RequestParameter.*;
+import static by.epam.project.util.RequestParameterName.*;
 
 public class PaymentCardValidatorImpl implements BaseValidator {
     private static final String NUMBER_CARD_REGEX = "^[\\d]{4}\\s[\\d]{4}\\s[\\d]{4}\\s[\\d]{4}$";

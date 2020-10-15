@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
-import static by.epam.project.util.RequestParameter.*;
+import static by.epam.project.util.RequestParameterName.*;
 
 public class SignUpCommand implements Command {
     private final UserServiceImpl service = UserServiceImpl.getInstance();
@@ -64,7 +64,7 @@ public class SignUpCommand implements Command {
             }
         } catch (ServiceException exp) {
             LOGGER.error(exp);
-            router = new Router(PagePath.ERROR_505);
+            router = new Router(PagePath.ERROR_500);
 
         }
         return router;

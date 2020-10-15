@@ -3,16 +3,13 @@ package by.epam.project.model.dao;
 import by.epam.project.entity.Room;
 import by.epam.project.exception.DaoException;
 import by.epam.project.model.creator.RoomCreator;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
-import static by.epam.project.util.RequestParameter.*;
+import static by.epam.project.util.RequestParameterName.*;
 
 
 public interface RoomDao extends BaseDaoSql<Room> {
@@ -22,8 +19,6 @@ public interface RoomDao extends BaseDaoSql<Room> {
 
     List<Room> findByComfort(String comfort) throws DaoException;
 
-    List<Room> findByPrice(double price) throws DaoException;
-
     List<Room> findByPlaceAmount(int placeAmount) throws DaoException;
 
     List<Room> findByStatus(boolean isActive) throws DaoException;
@@ -31,8 +26,6 @@ public interface RoomDao extends BaseDaoSql<Room> {
     boolean activateRoom(int number) throws DaoException;
 
     boolean inactiveRoom(int number) throws DaoException;
-
-    List<Room> sort(Comparator<Room> comparator) throws DaoException;
 
     default Room createRoomFromResultSet(ResultSet resultSet) throws DaoException {
         RoomCreator creator = RoomCreator.getInstance();

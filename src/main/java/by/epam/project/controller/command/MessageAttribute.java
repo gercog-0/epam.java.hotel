@@ -2,6 +2,7 @@ package by.epam.project.controller.command;
 
 public class MessageAttribute {
     public static final String SIGN_IN_ERROR_MESSAGE = "signInErrorMessage";
+    public static final String FILTER_ROOMS_ERROR_MESSAGE = "filterRoomsErrorMessage";
     public static final String PAYMENT_CARD_DATA = "paymentCardData";
     public static final String PAYMENT_MESSAGE = "paymentMessage";
     public static final String SIGN_UP_DATA = "signUpData";

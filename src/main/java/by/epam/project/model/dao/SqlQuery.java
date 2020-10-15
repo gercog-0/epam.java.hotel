@@ -26,10 +26,11 @@ public class SqlQuery {
     /*
     sql_query_rooms
      */
+    // TODO: 14.10.2020 number .-> roomNumber
     public static final String ADD_ROOM = "INSERT into rooms (number,comfort,price,place_amount, is_active) " +
             "VALUES (?,?,?,?,?)";
-    public static final String FIND_ROOM_BY_NUMBER = "SELECT roomId, number, comfort, price, place_amount, " +
-            "is_active FROM rooms WHERE number = ?";
+    public static final String FIND_ROOM_BY_NUMBER = "SELECT roomId, roomNumber, comfort, price, place_amount, " +
+            "is_active FROM rooms WHERE roomNumber = ?";
     public static final String FIND_ALL_ROOMS = "SELECT roomId, number, comfort, price, place_amount, " +
             "is_active FROM rooms";
     public static final String FIND_ROOMS_BY_COMFORT = "SELECT roomId, number, comfort, price, place_amount, " +
@@ -46,6 +47,17 @@ public class SqlQuery {
             "FROM web_hotel.rooms WHERE comfort = ? AND place_amount >= ? AND is_active = true AND NOT EXISTS (SELECT bookingId, " +
             "arrival_date, departure_date, booking_status, userId_fk, roomId_fk FROM web_hotel.bookings WHERE roomId = " +
             "roomId_fk AND ((? BETWEEN arrival_date AND departure_date) OR (? BETWEEN arrival_date AND departure_date)))";
+
+    /*
+    sql_query_bookings
+     */
+    public static final String ADD_BOOKING = "INSERT INTO bookings (arrival_date, departure_date, booking_status, " +
+            "userId_fk, roomId_fk, total_price) VALUES(?,?,?,?,?,?)";
+    public static final String FIND_BOOKING_BY_ID = "SELECT users.userId, users.login, users.email, users.name, users.surname, " +
+            "users.balance, users.phone, users.is_banned, users.is_activated, users.roleId, rooms.roomId, rooms.roomNumber, " +
+            "rooms.comfort, rooms.price, rooms.place_amount, rooms.is_active, bookings.bookingId, bookings.arrival_date, " +
+            "bookings.departure_date, bookings.booking_status, bookings.total_price FROM web_hotel.bookings JOIN web_hotel.users " +
+            "ON users.userId = bookings.userId_fk JOIN web_hotel.rooms ON rooms.roomId = bookings.roomId_fk WHERE bookings.bookingId = ?";
 
     private SqlQuery() {
     }

@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import static by.epam.project.util.RequestParameter.*;
+import static by.epam.project.util.RequestParameterName.*;
 
 public class UserServiceImpl implements UserService {
     private static UserServiceImpl instance = new UserServiceImpl();
@@ -48,14 +48,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User signUpUser(User user) throws ServiceException {
+    public boolean signUpUser(User user) throws ServiceException {
         UserDaoImpl userDao = UserDaoImpl.getInstance();
+        boolean isSignedUp;
         try {
-            userDao.add(user);
+            isSignedUp = userDao.add(user);
         } catch (DaoException exp) {
             throw new ServiceException(exp);
         }
-        return user;
+        return isSignedUp;
     }
 
 

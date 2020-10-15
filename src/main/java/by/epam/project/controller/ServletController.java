@@ -8,7 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+
+import static by.epam.project.util.RequestParameterName.*;
 
 @WebServlet("/controller")
 public class ServletController extends HttpServlet {
@@ -27,8 +30,10 @@ public class ServletController extends HttpServlet {
         Command command = CommandProvider.provideCommand(request.getParameter("command"));
 
         Router router = command.execute(request);
-
         String currentPage = router.getCurrentPage();
+        HttpSession session = request.getSession();
+        session.setAttribute(CURRENT_PAGE, currentPage);
+
         if (router.getCurrentType().equals(Router.Type.FORWARD)) {
             request.getRequestDispatcher(currentPage).forward(request, response);
         } else {

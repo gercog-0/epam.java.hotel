@@ -1,6 +1,6 @@
 package by.epam.project.util;
 
-public class RequestParameter {
+public class RequestParameterName {
     public static final String USER_ID = "userId";
     public static final String USER_LOGIN = "login";
     public static final String USER_PASSWORD = "password";
@@ -19,6 +19,14 @@ public class RequestParameter {
     public static final String ROOM_PRICE = "price";
     public static final String ROOM_PLACE_AMOUNT = "place_amount";
     public static final String ROOM_IS_ACTIVE = "is_active";
+
+    public static final String BOOKING_ID = "bookingId";
+    public static final String BOOKING_ARRIVAL_DATE = "arrival_date";
+    public static final String BOOKING_DEPARTURE_DATE = "departure_date";
+    public static final String BOOKING_STATUS = "booking_status";
+    public static final String BOOKING_USER_ID_FK = "userId_fk";
+    public static final String BOOKING_ROOM_ID_FK = "roomId_fk";
+    public static final String BOOKING_TOTAL_PRICE= "total_price";
 
     public static final String LOGIN_UNIQUE = "loginUnique";
     public static final String EMAIL_UNIQUE = "emailUnique";
@@ -43,7 +51,8 @@ public class RequestParameter {
     public static final String FREE_ROOMS = "freeRooms";
 
     public static final String COMMAND = "command";
+    public static final String CURRENT_PAGE = "currentPage";
 
-    private RequestParameter() {
+    private RequestParameterName() {
     }
 }

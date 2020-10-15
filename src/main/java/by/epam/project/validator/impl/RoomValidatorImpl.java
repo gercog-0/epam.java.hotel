@@ -7,9 +7,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import static by.epam.project.util.RequestParameter.*;
+import static by.epam.project.util.RequestParameterName.*;
 
 public class RoomValidatorImpl implements BaseValidator {
+    private static final String ROOM_NUMBER_REGEX = "^\\d{3}$";
     private static final String PRICE_REGEX = "^\\d+\\.?\\d+$";
     private static final String COMFORT_REGEX = "^[a-zA-z]+$";
     private static final String PLACE_AMOUNT_REGEX = "^\\d$";
@@ -19,6 +20,8 @@ public class RoomValidatorImpl implements BaseValidator {
     private static final double MAX_PRICE = 15000;
     private static final int MIN_PLACE_AMOUNT = 1;
     private static final int MAX_PLACE_AMOUNT = 5;
+    private static final int MIN_ROOM_NUMBER = 100;
+    private static final int MAX_ROOM_NUMBER = 500;
 
     private static final RoomValidatorImpl instance = new RoomValidatorImpl();
 
@@ -29,13 +32,25 @@ public class RoomValidatorImpl implements BaseValidator {
         return instance;
     }
 
-    public Map<String, String> validateParameters(String comfort, String price, String placeAmount, String isActive) {
+    public Map<String, String> validateParameters(String comfort, String price, String placeAmount,
+                                                  String isActive, String roomNumber) {
         Map<String, String> validatedData = new HashMap<>();
+        validatedData.put(ROOM_NUMBER, isRoomNumberCorrect(comfort) ? roomNumber : EMPTY_STRING);
         validatedData.put(ROOM_COMFORT, isComfortTypeCorrect(comfort) ? comfort : EMPTY_STRING);
         validatedData.put(ROOM_PRICE, isPriceCorrect(price) ? price : EMPTY_STRING);
         validatedData.put(ROOM_PLACE_AMOUNT, isPlaceAmountCorrect(placeAmount) ? placeAmount : EMPTY_STRING);
         validatedData.put(ROOM_IS_ACTIVE, isActiveCorrect(isActive) ? isActive : EMPTY_STRING);
         return validatedData;
+    }
+
+    public boolean isRoomNumberCorrect(String roomNumber) {
+        if (isStringMatches(roomNumber, ROOM_NUMBER_REGEX)) {
+            int number = Integer.parseInt(roomNumber);
+            if (MIN_ROOM_NUMBER <= number && number <= MAX_ROOM_NUMBER) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean isPlaceAmountCorrect(String placeAmount) {
@@ -51,7 +66,7 @@ public class RoomValidatorImpl implements BaseValidator {
 
     public boolean isComfortTypeCorrect(String comfort) {
         if (isStringMatches(comfort, COMFORT_REGEX)) {
-            Optional<Room.Comfort> comfortType = Room.Comfort.getComfortTypeByValue(comfort);
+            Optional<Room.Comfort> comfortType = Room.Comfort.getComfortTypeByValue(comfort.toLowerCase());
             if (comfortType.isPresent()) {
                 return true;
             }

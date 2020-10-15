@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import java.util.Map;
 
-import static by.epam.project.util.RequestParameter.*;
+import static by.epam.project.util.RequestParameterName.*;
 
 
 public class MakeDepositCommand implements Command {
@@ -53,7 +53,7 @@ public class MakeDepositCommand implements Command {
             }
         } catch (ServiceException exp) {
             LOGGER.error(exp);
-            router = new Router(PagePath.ERROR_505);
+            router = new Router(PagePath.ERROR_500);
         }
         return router;
     }

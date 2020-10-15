@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static by.epam.project.util.RequestParameter.USER_LOGIN;
+import static by.epam.project.util.RequestParameterName.USER_LOGIN;
 
 public class BanUserCommand implements Command {
     private UserService userService = UserServiceImpl.getInstance();
@@ -28,7 +28,7 @@ public class BanUserCommand implements Command {
             router = new Router();
         } catch (ServiceException exp){
             LOGGER.error(exp);
-            router =  new Router(PagePath.ERROR_505);
+            router =  new Router(PagePath.ERROR_500);
         }
         return router;
     }
