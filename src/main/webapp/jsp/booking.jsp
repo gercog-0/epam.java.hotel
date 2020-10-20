@@ -89,6 +89,7 @@
                 <div class="rooms">
                     <div class="rooms__header">
                         <h2><fmt:message key="booking.available_rooms"/></h2>
+                        <c:if test="${not empty rooms}">
                         <div class="rooms__sort">
                             <span class="rooms__label"><fmt:message key="booking.sort_by"/></span>
                             <a href="controller?command=sort_rooms&type_sort=price"
@@ -96,20 +97,21 @@
                             <a href="controller?command=sort_rooms&type_sort=place_amount"
                                class="rooms__sort-link"><fmt:message key="booking.places"/></a>
                         </div>
+                        </c:if>
                     </div>
                     <table class="rooms-table">
                         <c:choose>
-                            <c:when test="${empty freeRooms && freeRooms.size() == 0}">
+                            <c:when test="${empty rooms && rooms.size() == 0}">
                                 <tr>
                                     <td><fmt:message key="booking.not_found_message"/></td>
                                 </tr>
                             </c:when>
-                            <c:when test="${empty freeRooms}">
+                            <c:when test="${empty rooms}">
                                 <tr>
                                     <td><fmt:message key="booking.set_parameters_message"/></td>
                                 </tr>
                             </c:when>
-                            <c:when test="${not empty freeRooms}">
+                            <c:when test="${not empty rooms}">
                                 <tr>
                                     <th><fmt:message key="booking.number"/></th>
                                     <th><fmt:message key="booking.type"/></th>
@@ -117,7 +119,7 @@
                                     <th><fmt:message key="booking.price"/></th>
                                     <th></th>
                                 </tr>
-                                <c:forEach var="room" items="${freeRooms}">
+                                <c:forEach var="room" items="${rooms}">
                                     <tr>
                                         <td>${room.getNumber()}</td>
                                         <td>${room.getComfort()}</td>

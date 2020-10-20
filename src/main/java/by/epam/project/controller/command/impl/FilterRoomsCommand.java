@@ -6,9 +6,8 @@ import by.epam.project.controller.command.impl.util.CommandUtil;
 import by.epam.project.entity.Room;
 import by.epam.project.exception.ServiceException;
 import by.epam.project.model.service.impl.RoomServiceImpl;
-import by.epam.project.util.RequestParameterName;
-import by.epam.project.validator.impl.DateValidatorImpl;
-import by.epam.project.validator.impl.RoomValidatorImpl;
+import by.epam.project.validator.DateValidator;
+import by.epam.project.validator.RoomValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,9 +19,7 @@ import java.util.List;
 import static by.epam.project.util.RequestParameterName.*;
 
 public class FilterRoomsCommand implements Command {
-    private final RoomServiceImpl roomService = RoomServiceImpl.getInstance();
-    private final RoomValidatorImpl roomValidator = RoomValidatorImpl.getInstance();
-    private final DateValidatorImpl dateValidator = DateValidatorImpl.getInstance();
+    private RoomServiceImpl roomService = RoomServiceImpl.getInstance();
 
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -37,20 +34,17 @@ public class FilterRoomsCommand implements Command {
             String arrivalDateString = request.getParameter(BOOKING_DATE_FROM);
             String departureDateString = request.getParameter(BOOKING_DATE_TO);
 
-            if (roomValidator.isComfortTypeCorrect(comfort)
-                    && roomValidator.isPlaceAmountCorrect(placeAmount)
-                    && dateValidator.checkDate(arrivalDateString, departureDateString)) {
+            if (RoomValidator.isComfortTypeCorrect(comfort)
+                    && RoomValidator.isPlaceAmountCorrect(placeAmount)
+                    && DateValidator.checkDate(arrivalDateString, departureDateString)) {
                 List<Room> foundRooms = roomService.findFreeRoomsByParameters(comfort,
                         placeAmount, arrivalDateString, departureDateString);
-                request.setAttribute(FREE_ROOMS, foundRooms);
+                session.setAttribute(ROOMS, foundRooms);
                 session.setAttribute(BOOKING_DATE_FROM, arrivalDateString);
                 session.setAttribute(BOOKING_DATE_TO, departureDateString);
 
                 String currentPage = (String) session.getAttribute(CURRENT_PAGE);
                 router = new Router(currentPage);
-                // TODO: 13.10.2020 protection f5
-                //router = new Router(Router.Type.REDIRECT, createRedirectURL(request,
-                //      CommandType.PASSING_ADVANCE_BOOKING.getNameCommand()));
             } else {
                 String locale = (String) session.getAttribute(MessageAttribute.LANGUAGE);
                 String messageWithLocale = CommandUtil.makePartWithLocale(locale,

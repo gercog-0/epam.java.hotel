@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 public class SignInCommand implements Command {
-    private final UserServiceImpl userService = UserServiceImpl.getInstance();
+    private UserServiceImpl userService = UserServiceImpl.getInstance();
 
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -27,11 +27,6 @@ public class SignInCommand implements Command {
     public Router execute(HttpServletRequest request) {
         Router router = new Router();
         HttpSession session = request.getSession();
-        // TODO: 09.10.2020 maybe redirect?
-        // TODO: 09.10.2020 maybe redirect?
-        // TODO: 09.10.2020 maybe redirect?
-        // TODO: 09.10.2020 maybe redirect?
-        // TODO: 09.10.2020 maybe redirect?
         try {
             String login = request.getParameter(USER_LOGIN);
             String password = request.getParameter(USER_PASSWORD);
@@ -41,8 +36,10 @@ public class SignInCommand implements Command {
                 User user = currentUser.get();
                 session.removeAttribute(MessageAttribute.SIGN_IN_ERROR_MESSAGE);
                 if (user.isBanned()) {
-                    router.setCurrentPage(PagePath.BANNED_INFO);
+                    request.setAttribute(MessageAttribute.BANNED_USER_ACCOUNT ,user.getLogin());
+                    router.setCurrentPage(PagePath.NOTIFICATION);
                 } else if (!user.isActivated()) {
+                    request.setAttribute(MessageAttribute.NOT_ACTIVATED_USER_ACCOUNT ,user.getLogin());
                     router.setCurrentPage(PagePath.NOTIFICATION);
                 } else {
                     session.setAttribute(MessageAttribute.USER, user);

@@ -1,6 +1,7 @@
 package by.epam.project.controller.command;
 
 public class PagePath {
+    public final static String INDEX = "/index.jsp";
     public final static String HOME = "jsp/home.jsp";
     public final static String SIGN_IN = "jsp/signIn.jsp";
     public final static String SIGN_UP = "jsp/signUp.jsp";
@@ -12,7 +13,7 @@ public class PagePath {
     public final static String BOOKING = "jsp/booking.jsp";
     public final static String PAYMENT_CARD = "jsp/paymentCard.jsp";
     public final static String ROOMS = "jsp/rooms.jsp";
-    public final static String ACTIVE_BOOKING_ADMIN = "jsp/activeBookingAdmin.jsp";
+    public final static String WAITING_BOOKING_ADMIN = "jsp/waitingBookingsAdmin.jsp";
     public final static String ROOMS_ADMIN = "jsp/roomsAdmin.jsp";
     public final static String USERS_ADMIN = "jsp/usersAdmin.jsp";
 

@@ -9,22 +9,18 @@ import by.epam.project.entity.User;
 import by.epam.project.exception.ServiceException;
 import by.epam.project.model.service.impl.BookingServiceImpl;
 import by.epam.project.model.service.impl.RoomServiceImpl;
-import by.epam.project.util.RequestParameterName;
-import by.epam.project.validator.impl.RoomValidatorImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 import java.util.Optional;
 
 import static by.epam.project.util.RequestParameterName.*;
 
 public class BookingCommand implements Command {
-    private final BookingServiceImpl bookingService = BookingServiceImpl.getInstance();
-    private final RoomServiceImpl roomService = RoomServiceImpl.getInstance();
-    private final RoomValidatorImpl roomValidator = RoomValidatorImpl.getInstance();
+    private BookingServiceImpl bookingService = BookingServiceImpl.getInstance();
+    private RoomServiceImpl roomService = RoomServiceImpl.getInstance();
 
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -42,13 +38,12 @@ public class BookingCommand implements Command {
             if (foundRoom.isPresent()) {
                 Room room = foundRoom.get();
                 bookingService.makeBooking(dateFrom, dateTo, currentUser, room);
-                // TODO: 14.10.2020 mail sms
                 session.removeAttribute(BOOKING_DATE_FROM);
                 session.removeAttribute(BOOKING_DATE_TO);
-                // TODO: 14.10.2020
-                router = new Router(PagePath.HOME);
+                session.removeAttribute(ROOMS);
+                request.setAttribute(MessageAttribute.BOOKING_ROOM, room);
+                router = new Router(PagePath.NOTIFICATION);
             } else {
-                // TODO: 14.10.2020
                 router = new Router(PagePath.ERROR_404);
             }
         } catch (ServiceException exp) {

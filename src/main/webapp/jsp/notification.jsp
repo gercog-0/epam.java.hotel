@@ -1,80 +1,127 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: USER
-  Date: 15.10.2020
-  Time: 13:59
-  To change this template use File | Settings | File Templates.
+  Created by Yanushkevich Ivan.
+  Date: 19.10.2020
+  Time: 16:56
+  Notification page
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<c:choose>
+    <c:when test="${not empty language}"> <fmt:setLocale value="${language}"/></c:when>
+    <c:when test="${empty language}"> <fmt:setLocale value="en"/></c:when>
+</c:choose>
+
+<fmt:setBundle basename="pagecontent.language"/>
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Lato:wght@300;400;500;700&display=swap"
           rel="stylesheet">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/media.css">
-    <title>Home</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/media.css">
+    <title><fmt:message key="notification_page.title"/></title>
 </head>
 
 <body>
 <div class="layout">
-    <div class="layout-header">
-        <div class="container">
-            <div class="layout-header__row">
-                <a href="#" class="logo">
-                    <div class="logo__subtitle">The greatest and most reputable</div>
-                    Deluxe Hotel
-                </a>
-                <div class="layout-header__menu">
-                    <ul class="navigation">
-                        <li class="navigation__item">
-                            <a href="#" class="navigation__link">Sign In</a>
-                        </li>
-                        <li class="navigation__item">
-                            <a href="#" class="navigation__link">Sign Up</a>
-                        </li>
-                        <li class="navigation__item">
-                            <a href="#" class="navigation__link">Account</a>
-                        </li>
-                        <li class="navigation__item">
-                            <a href="#" class="navigation__link">Log Out</a>
-                        </li>
-                    </ul>
-                    <div class="language-select">
-                        <div class="language-select__current">
-                            <span class="language-select__label">RU</span>
-                            <span class="language-select__arrow"></span>
-                        </div>
-                        <div class="language-select__dropdown">
-                            <ul class="menu">
-                                <li>
-                                    <a href="lang=ru"><span>Russian</span></a>
-                                </li>
-                                <li>
-                                    <a href="lang=ru"> <span>English</span></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="layout-body" style="background-image: url(img/texture.png); background-repeat: repeat; background-size: auto; background-attachment: fixed;">
+    <c:import url="${pageContext.request.contextPath}/jsp/headerWithoutLang.jsp"/>
+    <div class="layout-body"
+         style="background-image: url(${pageContext.request.contextPath}/images/notification.jpg); background-repeat: repeat; background-size: auto; background-attachment: fixed;">
         <div class="notification">
-            <h3 class="notification__title">Success</h3>
-            <p class="notification__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex labore accusantium corrupti omnis nesciunt dolorum, provident perspiciatis voluptates! Quasi laboriosam animi id maxime enim vitae accusamus atque dolor deleniti, obcaecati nesciunt debitis, sequi ex odit cum nihil commodi explicabo repellat mollitia! Neque nesciunt incidunt ipsam voluptates, distinctio odit facere ipsa!</p>
-            <a href="#" class="notification__link">Home</a>
-            <a href="#" class="notification__link">Home</a>
+            <h3 class="notification__title"><fmt:message key="notification_page.subtitle"/></h3>
+            <c:choose>
+                <c:when test="${not empty activateRoomNumber}">
+                    <p class="notification__text">
+                        <fmt:message key="notification_page.room_with_number"/> ${activateRoomNumber} <fmt:message
+                            key="notification_page.successfully_activated"/>
+                    </p>
+                </c:when>
+
+                <c:when test="${ not empty addRoomNumber}">
+                    <p class="notification__text">
+                        <fmt:message key="notification_page.room_with_number"/> ${addRoomNumber} <fmt:message
+                            key="notification_page.successfully_added"/>
+                    </p>
+                </c:when>
+
+                <c:when test="${not empty approveBookingId}">
+                    <p class="notification__text">
+                        <fmt:message key="notification_page.booking_with_id"/> ${approveBookingId} <fmt:message
+                            key="notification_page.successfully_approved"/>
+                    </p>
+                </c:when>
+
+                <c:when test="${not empty banLoginUser}">
+                    <p class="notification__text">
+                        <fmt:message key="notification_page.user_with_login"/> ${banLoginUser} <fmt:message
+                            key="notification_page.successfully_banned"/>
+                    </p>
+                </c:when>
+                <c:when test="${not empty bookingRoom}">
+                    <p class="notification__text">
+                        <fmt:message key="notification_page.successfully_booked"/> ${bookingRoom.getNumber()}
+                    </p>
+                </c:when>
+                <c:when test="${not empty activationMessage}">
+                    <p class="notification__text">
+                        <fmt:message key="notification_page.activation_message"/>
+                    </p>
+                </c:when>
+                <c:when test="${not empty disableRoomNumber}">
+                    <p class="notification__text">
+                        <fmt:message key="notification_page.room_with_number"/> ${disableRoomNumber} <fmt:message
+                            key="notification_page.successfully_disabled"/>
+                    </p>
+                </c:when>
+                <c:when test="${not empty depositMessage}">
+                    <p class="notification__text">
+                        <fmt:message key="notification_page.successfully_credited"/> ${depositMessage}$
+                    </p>
+                </c:when>
+                <c:when test="${not empty paymentMessage}">
+                    <p class="notification__text">
+                        <fmt:message key="notification_page.your_order"/> # ${paymentMessage} <fmt:message
+                            key="notification_page.successfully_paid"/>
+                    </p>
+                </c:when>
+                <c:when test="${not empty rejectBookingId}">
+                    <p class="notification__text">
+                        <fmt:message key="notification_page.booking_with_id"/> ${rejectBookingId} <fmt:message
+                            key="notification_page.successfully_rejected"/>
+                    </p>
+                </c:when>
+                <c:when test="${not empty bannedAccount || not empty notActivatedAccount}">
+                    <c:if test="${not empty bannedAccount}">
+                        <p class="notification__text">
+                            <fmt:message key="notification_page.banned_account"/>
+                        </p>
+                    </c:if>
+                    <c:if test="${not empty notActivatedAccount}">
+                        <p class="notification__text">
+                            <fmt:message key="notification_page.not_activated_account"/>
+                        </p>
+                    </c:if>
+                </c:when>
+                <c:when test="${not empty signUpMessage}">
+                    <p class="notification__text">
+                        <fmt:message key="notification_page.sign_up_message"/>
+                    </p>
+                </c:when>
+                <c:when test="${not empty unbanLoginUser}">
+                    <p class="notification__text">
+                        <fmt:message key="notification_page.user_with_login"/>
+                            ${unbanLoginUser} <fmt:message key="notification_page.successfully_unbanned"/>
+                    </p>
+                </c:when>
+            </c:choose>
         </div>
     </div>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="js/main.js"></script>
-
+<script src="${pageContext.request.contextPath}/js/main.js"></script>
 </html>

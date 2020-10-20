@@ -1,5 +1,7 @@
 package by.epam.project.entity;
 
+import by.epam.project.util.DateUtil;
+
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Optional;
@@ -7,9 +9,9 @@ import java.util.Optional;
 public class Booking extends Entity {
     public enum Status {
         WAITING("waiting"),
-        APPROVED("approved"),
         PAYMENT("payment"),
-        ACTIVE("active");
+        ACTIVE("active"),
+        REJECTED("rejected");
 
         private final String nameStatus;
 
@@ -82,12 +84,22 @@ public class Booking extends Entity {
         return arrivalDate;
     }
 
+    public String getArrivalDateString(){
+        String dateString = DateUtil.parseDateToStringFormat(this.arrivalDate);
+        return dateString;
+    }
+
     public void setArrivalDate(Date arrivalDate) {
         this.arrivalDate = arrivalDate;
     }
 
     public Date getDepartureDate() {
         return departureDate;
+    }
+
+    public String getDepartureDateString(){
+        String dateString = DateUtil.parseDateToStringFormat(this.departureDate);
+        return dateString;
     }
 
     public void setDepartureDate(Date departureDate) {

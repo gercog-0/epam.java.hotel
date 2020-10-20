@@ -19,7 +19,7 @@
 <div class="layout-header">
     <div class="container">
         <div class="layout-header__row">
-            <a href="#" class="logo">
+            <a href="controller?command=passing_home" class="logo">
                 <div class="logo__subtitle"><fmt:message key="header.subtitle"/></div>
                 <fmt:message key="header.name_hotel"/>
             </a>
@@ -36,18 +36,20 @@
                                         key="header.payment_card"/></a>
                             </li>
                             <li class="navigation__item">
-                                <a href="controller?command=passing_user_profile" class="navigation__link"><fmt:message key="header.account"/></a>
+                                <a href="controller?command=passing_user_profile" class="navigation__link"><fmt:message
+                                        key="header.account"/></a>
                             </li>
                         </c:if>
                         <c:if test="${userRole == 'ADMINISTRATOR'}">
                             <li class="navigation__item">
-                                <a href="controller?command=passing_active_booking_admin" class="navigation__link">ACTIVE BOOKING</a>
+                                <a href="controller?command=passing_waiting_bookings_admin"
+                                   class="navigation__link"><fmt:message key="header.active_booking"/></a>
                             </li>
                             <li class="navigation__item">
-                                <a href="controller?command=passing_rooms_admin" class="navigation__link">ROOMS</a>
+                                <a href="controller?command=passing_rooms_admin" class="navigation__link"><fmt:message key="header.rooms"/></a>
                             </li>
                             <li class="navigation__item">
-                                <a href="controller?command=passing_users_admin" class="navigation__link">USERS</a>
+                                <a href="controller?command=passing_users_admin" class="navigation__link"><fmt:message key="header.users"/></a>
                             </li>
                         </c:if>
                         <li class="navigation__item">
@@ -114,18 +116,20 @@
                                 key="header.payment_card"/></a>
                     </li>
                     <li class="navigation__item">
-                        <a href="controller?command=passing_user_profile" class="navigation__link"><fmt:message key="header.account"/></a>
+                        <a href="controller?command=passing_user_profile" class="navigation__link"><fmt:message
+                                key="header.account"/></a>
                     </li>
                 </c:if>
                 <c:if test="${userRole == 'ADMINISTRATOR'}">
                     <li class="navigation__item">
-                        <a href="controller?command=passing_active_booking_admin" class="navigation__link">ACTIVE BOOKING</a>
+                        <a href="controller?command=passing_waiting_bookings_admin"
+                           class="navigation__link"><fmt:message key="header.active_booking"/></a>
                     </li>
                     <li class="navigation__item">
-                        <a href="controller?command=passing_rooms_admin" class="navigation__link">ROOMS</a>
+                        <a href="controller?command=passing_rooms_admin" class="navigation__link"><fmt:message key="header.rooms"/></a>
                     </li>
                     <li class="navigation__item">
-                        <a href="controller?command=passing_users_admin" class="navigation__link">USERS</a>
+                        <a href="controller?command=passing_users_admin" class="navigation__link"><fmt:message key="header.users"/></a>
                     </li>
                 </c:if>
                 <li class="navigation__item">

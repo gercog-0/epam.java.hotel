@@ -1,5 +1,6 @@
 package by.epam.project.model.service;
 
+import by.epam.project.entity.Booking;
 import by.epam.project.entity.User;
 import by.epam.project.exception.ServiceException;
 
@@ -14,6 +15,8 @@ public interface UserService {
 
     List<User> findAllUsers() throws ServiceException;
 
+    List<User> sortByParameter(List<User> users, String sortType) throws ServiceException;
+
     Optional<User> findUserById(int id) throws ServiceException;
 
     Optional<User> findUserByPhone(String phone) throws ServiceException;
@@ -23,6 +26,8 @@ public interface UserService {
     boolean depositMoney(String login, double sum) throws ServiceException;
 
     boolean updatePasswordByLogin(String login, String password) throws ServiceException;
+
+    boolean paymentBooking(User user, double bookingPrice) throws ServiceException;
 
     boolean banUser(String login) throws ServiceException;
 

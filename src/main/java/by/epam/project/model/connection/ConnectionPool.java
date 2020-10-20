@@ -18,13 +18,13 @@ import java.util.concurrent.LinkedBlockingDeque;
 public enum ConnectionPool {
     INSTANCE;
 
-    private static final String DATABASE_PROPERTIES = "database.properties";
-    private static final String DATABASE_URL = "url";
-    private static final String DATABASE_DRIVER = "driver";
-    private static final int DEFAULT_POOL_SIZE = 10;
+    private final String DATABASE_PROPERTIES = "database.properties";
+    private final String DATABASE_URL = "url";
+    private final String DATABASE_DRIVER = "driver";
+    private final int DEFAULT_POOL_SIZE = 32;
 
-    private BlockingQueue<ProxyConnection> freeConnections;
-    private Queue<ProxyConnection> busyConnections;
+    private final BlockingQueue<ProxyConnection> freeConnections;
+    private final Queue<ProxyConnection> busyConnections;
 
     private static final Logger Logger = LogManager.getLogger();
 
@@ -38,17 +38,16 @@ public enum ConnectionPool {
         ProxyConnection proxyConnection = null;
         try {
             proxyConnection = freeConnections.take();
+            busyConnections.add(proxyConnection);
         } catch (InterruptedException exp) {
             Logger.error("The connection is not received", exp);
         }
-        busyConnections.add(proxyConnection);
-
         return proxyConnection;
     }
 
     public void releaseConnection(Connection connection) {
-        if (connection.getClass() == ProxyConnection.class) {
-            busyConnections.remove(connection);
+        if (connection.getClass() == ProxyConnection.class
+                && busyConnections.remove(connection)) {
             freeConnections.offer((ProxyConnection) connection);
         } else {
             Logger.error("Invalid connection type passed");

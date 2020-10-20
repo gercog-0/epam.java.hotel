@@ -1,4 +1,4 @@
-package by.epam.project.comparator;
+package by.epam.project.util.comparator;
 
 import by.epam.project.entity.Room;
 

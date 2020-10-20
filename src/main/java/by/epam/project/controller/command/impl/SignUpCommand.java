@@ -8,7 +8,7 @@ import by.epam.project.exception.ServiceException;
 import by.epam.project.model.creator.UserCreator;
 import by.epam.project.model.service.EmailMessageService;
 import by.epam.project.model.service.impl.UserServiceImpl;
-import by.epam.project.validator.impl.UserValidatorImpl;
+import by.epam.project.validator.UserValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,15 +19,14 @@ import java.util.Map;
 import static by.epam.project.util.RequestParameterName.*;
 
 public class SignUpCommand implements Command {
-    private final UserServiceImpl service = UserServiceImpl.getInstance();
-    private final UserValidatorImpl validator = UserValidatorImpl.getInstance();
-    private final UserCreator creator = UserCreator.getInstance();
+    private UserServiceImpl service = UserServiceImpl.getInstance();
 
-    private static final String ACTIVATION_LINK = "http://localhost:8080/controller?command=confirm_sign_up&login=";
+    private static final String EMAIL_ACTIVATION_LINK = "http://localhost:8080/controller?command=confirm_sign_up&login=";
     private static final Logger LOGGER = LogManager.getLogger();
 
     @Override
     public Router execute(HttpServletRequest request) {
+        UserCreator creator = UserCreator.getInstance();
         Router router;
         HttpSession session = request.getSession();
 
@@ -42,7 +41,7 @@ public class SignUpCommand implements Command {
             Map<String, String> requestData = service.defineSignUpData(login,
                     password, email, name, surname, phone);
 
-            if (validator.defineIncorrectValues(requestData)) {
+            if (UserValidator.defineIncorrectValues(requestData)) {
                 EmailMessageService emailService = EmailMessageService.getInstance();
                 User newUser = creator.createUser(login, email, name, surname, phone, User.Role.USER.getRoleId());
                 service.signUpUser(newUser);
@@ -55,9 +54,9 @@ public class SignUpCommand implements Command {
                 String emailBodyWithLocale = CommandUtil.makePartWithLocale(locale, PropertiesMessageKey.EMAIL_BODY);
 
                 emailService.makeAndSendActivationEmail(newUser, emailSubjectWithLocale,
-                        emailBodyWithLocale, ACTIVATION_LINK);
-                router = new Router(Router.Type.REDIRECT, createRedirectURL(request,
-                        CommandType.PASSING_ACTIVATION.getNameCommand()));
+                        emailBodyWithLocale, EMAIL_ACTIVATION_LINK);
+                request.setAttribute(MessageAttribute.SIGN_UP_MESSAGE, login);
+                router = new Router(PagePath.NOTIFICATION);
             } else {
                 request.setAttribute(MessageAttribute.SIGN_UP_DATA, requestData);
                 router = new Router(PagePath.SIGN_UP);

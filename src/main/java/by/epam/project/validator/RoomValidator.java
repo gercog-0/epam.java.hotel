@@ -1,21 +1,21 @@
-package by.epam.project.validator.impl;
+package by.epam.project.validator;
 
 import by.epam.project.entity.Room;
-import by.epam.project.validator.BaseValidator;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static by.epam.project.util.RequestParameterName.*;
 
-public class RoomValidatorImpl implements BaseValidator {
+public class RoomValidator {
     private static final String ROOM_NUMBER_REGEX = "^\\d{3}$";
     private static final String PRICE_REGEX = "^\\d+\\.?\\d+$";
     private static final String COMFORT_REGEX = "^[a-zA-z]+$";
     private static final String PLACE_AMOUNT_REGEX = "^\\d$";
-    private static final String IS_ACTIVE_REGEX_TRUE = "^true$";
-    private static final String IS_ACTIVE_REGEX_FALSE = "^false$";
+    private static final String EMPTY_STRING = "";
     private static final double MIN_PRICE = 150;
     private static final double MAX_PRICE = 15000;
     private static final int MIN_PLACE_AMOUNT = 1;
@@ -23,28 +23,21 @@ public class RoomValidatorImpl implements BaseValidator {
     private static final int MIN_ROOM_NUMBER = 100;
     private static final int MAX_ROOM_NUMBER = 500;
 
-    private static final RoomValidatorImpl instance = new RoomValidatorImpl();
-
-    private RoomValidatorImpl() {
+    private RoomValidator() {
     }
 
-    public static RoomValidatorImpl getInstance() {
-        return instance;
-    }
-
-    public Map<String, String> validateParameters(String comfort, String price, String placeAmount,
-                                                  String isActive, String roomNumber) {
+    public static Map<String, String> validateParameters(String comfort, String price,
+                                                         String placeAmount, String roomNumber) {
         Map<String, String> validatedData = new HashMap<>();
-        validatedData.put(ROOM_NUMBER, isRoomNumberCorrect(comfort) ? roomNumber : EMPTY_STRING);
+        validatedData.put(ROOM_NUMBER, isRoomNumberCorrect(roomNumber) ? roomNumber : EMPTY_STRING);
         validatedData.put(ROOM_COMFORT, isComfortTypeCorrect(comfort) ? comfort : EMPTY_STRING);
         validatedData.put(ROOM_PRICE, isPriceCorrect(price) ? price : EMPTY_STRING);
         validatedData.put(ROOM_PLACE_AMOUNT, isPlaceAmountCorrect(placeAmount) ? placeAmount : EMPTY_STRING);
-        validatedData.put(ROOM_IS_ACTIVE, isActiveCorrect(isActive) ? isActive : EMPTY_STRING);
         return validatedData;
     }
 
-    public boolean isRoomNumberCorrect(String roomNumber) {
-        if (isStringMatches(roomNumber, ROOM_NUMBER_REGEX)) {
+    public static boolean isRoomNumberCorrect(String roomNumber) {
+        if (isEmptyOrNull(roomNumber) && isStringMatches(roomNumber, ROOM_NUMBER_REGEX)) {
             int number = Integer.parseInt(roomNumber);
             if (MIN_ROOM_NUMBER <= number && number <= MAX_ROOM_NUMBER) {
                 return true;
@@ -53,8 +46,8 @@ public class RoomValidatorImpl implements BaseValidator {
         return false;
     }
 
-    public boolean isPlaceAmountCorrect(String placeAmount) {
-        if (isStringMatches(placeAmount, PLACE_AMOUNT_REGEX)) {
+    public static boolean isPlaceAmountCorrect(String placeAmount) {
+        if (isEmptyOrNull(placeAmount) && isStringMatches(placeAmount, PLACE_AMOUNT_REGEX)) {
             int places = Integer.parseInt(placeAmount);
             if (MIN_PLACE_AMOUNT <= places && places <= MAX_PLACE_AMOUNT) {
                 return true;
@@ -64,8 +57,8 @@ public class RoomValidatorImpl implements BaseValidator {
     }
 
 
-    public boolean isComfortTypeCorrect(String comfort) {
-        if (isStringMatches(comfort, COMFORT_REGEX)) {
+    public static boolean isComfortTypeCorrect(String comfort) {
+        if (isEmptyOrNull(comfort) && isStringMatches(comfort, COMFORT_REGEX)) {
             Optional<Room.Comfort> comfortType = Room.Comfort.getComfortTypeByValue(comfort.toLowerCase());
             if (comfortType.isPresent()) {
                 return true;
@@ -74,16 +67,8 @@ public class RoomValidatorImpl implements BaseValidator {
         return false;
     }
 
-    public boolean isActiveCorrect(String isActive) {
-        if (isStringMatches(isActive, IS_ACTIVE_REGEX_TRUE)
-                || isStringMatches(isActive, IS_ACTIVE_REGEX_FALSE)) {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean isPriceCorrect(String price) {
-        if (isStringMatches(price, PRICE_REGEX)) {
+    public static boolean isPriceCorrect(String price) {
+        if (isEmptyOrNull(price) && isStringMatches(price, PRICE_REGEX)) {
             double value = Double.parseDouble(price);
             if (MIN_PRICE <= value && value <= MAX_PRICE) {
                 return true;
@@ -92,13 +77,22 @@ public class RoomValidatorImpl implements BaseValidator {
         return false;
     }
 
-    @Override
-    public boolean defineIncorrectValues(Map<String, String> data) {
+    public static boolean defineIncorrectValues(Map<String, String> data) {
         for (String key : data.keySet()) {
-            if (data.get(key).isEmpty()) {
+            if (data.get(key).isEmpty() || data.get(key).equals(NOT_UNIQUE)) {
                 return false;
             }
         }
         return true;
+    }
+
+    private static boolean isStringMatches(String string, String regex) {
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(string);
+        return matcher.matches();
+    }
+
+    private static boolean isEmptyOrNull(String string) {
+        return string != null && !string.isEmpty();
     }
 }

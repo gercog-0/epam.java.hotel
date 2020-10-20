@@ -1,4 +1,4 @@
-package by.epam.project.controller;
+package by.epam.project.controller.command;
 
 import by.epam.project.controller.command.Command;
 import by.epam.project.controller.command.CommandType;

@@ -10,7 +10,7 @@ import java.util.Optional;
 
 import static by.epam.project.util.RequestParameterName.*;
 
-public interface UserDao extends BaseDaoSql<User> {
+public interface UserDao extends BaseDao<User> {
     Optional<User> findById(int id) throws DaoException;
 
     Optional<User> findByLogin(String login) throws DaoException;
@@ -30,27 +30,4 @@ public interface UserDao extends BaseDaoSql<User> {
     boolean updatePasswordByLogin(String login, String password) throws DaoException;
 
     boolean updateBalanceByLogin(String login, double sum) throws DaoException;
-
-    default User createUserFromResultSet(ResultSet resultSet) throws DaoException {
-        UserCreator creator = UserCreator.getInstance();
-
-        try {
-            int userId = resultSet.getInt(USER_ID);
-            String userLogin = resultSet.getString(USER_LOGIN);
-            String userEmail = resultSet.getString(USER_EMAIL);
-            String userName = resultSet.getString(USER_NAME);
-            String userSurname = resultSet.getString(USER_SURNAME);
-            String userPhone = resultSet.getString(USER_PHONE);
-            double userBalance = resultSet.getDouble(USER_BALANCE);
-            boolean userIsBanned = resultSet.getBoolean(USER_IS_BANNED);
-            boolean userIsActivated = resultSet.getBoolean(USER_IS_ACTIVATED);
-            int userRoleId = resultSet.getInt(USER_ROLE_ID);
-
-            User createdUser = creator.createUser(userId, userLogin, userEmail, userName,
-                    userSurname, userPhone, userBalance, userIsBanned, userIsActivated, userRoleId);
-            return createdUser;
-        } catch (SQLException exp) {
-            throw new DaoException("Error while creating user from resultSet", exp);
-        }
-    }
 }

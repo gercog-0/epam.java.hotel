@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,12 +64,68 @@ public class BookingDaoImpl implements BookingDao {
     }
 
     @Override
-    public List<Booking> findAll() throws DaoException {
-        return null;
+    public boolean updateStatusById(int id, String status) throws DaoException {
+        boolean isUpdate;
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SqlQuery.UPDATE_STATUS_BOOKING)) {
+            statement.setString(1, status);
+            statement.setInt(2, id);
+            isUpdate = statement.executeUpdate() > 0;
+        } catch (SQLException exp) {
+            throw new DaoException(exp);
+        }
+        return isUpdate;
     }
 
     @Override
+    public List<Booking> findAllByIdUser(int userId) throws DaoException {
+        List<Booking> bookings = new ArrayList<>();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SqlQuery.FIND_ALL_BOOKINGS_BY_USER_ID)) {
+            statement.setInt(1, userId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Booking booking = createBookingFromResultSet(resultSet);
+                bookings.add(booking);
+            }
+        } catch (SQLException exp) {
+            throw new DaoException(exp);
+        }
+        return bookings;
+    }
+
+
+    @Override
+    public List<Booking> findAll() throws DaoException {
+        List<Booking> bookings = new ArrayList<>();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SqlQuery.FIND_ALL_BOOKINGS)) {
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Booking booking = createBookingFromResultSet(resultSet);
+                bookings.add(booking);
+            }
+        } catch (SQLException exp) {
+            throw new DaoException(exp);
+        }
+        return bookings;
+    }
+
+
+    @Override
     public List<Booking> findByStatus(String status) throws DaoException {
-        return null;
+        List<Booking> bookings = new ArrayList<>();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SqlQuery.FIND_ALL_BOOKINGS_BY_STATUS)) {
+            statement.setString(1, status);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Booking booking = createBookingFromResultSet(resultSet);
+                bookings.add(booking);
+            }
+        } catch (SQLException exp) {
+            throw new DaoException(exp);
+        }
+        return bookings;
     }
 }

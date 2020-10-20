@@ -18,19 +18,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><fmt:message key="sign_up_page.title"/></title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/log.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/media.css">
 </head>
 
 <body background="${pageContext.request.contextPath}/images/hotelMain.jpg" style="background-repeat: no-repeat">
 <div class="login-page">
+    <c:import url="${pageContext.request.contextPath}/jsp/header.jsp"/>
     <div class="form">
         <form action="controller" method="post" class="login-form">
             <input type="text" name="name" placeholder=
-            <fmt:message key="sign_up_page.name"/> required pattern="^[a-zA-Zа-яА-Я]{2,25}$"
+            <fmt:message key="sign_up_page.name"/> required pattern="^[a-zA-Z]{2,25}$"
                    oninvalid="this.setCustomValidity('<fmt:message key="sign_up_page.invalid_name"/>')"
                    onchange="this.setCustomValidity('')" value="${signUpData['name']}"/>
 
             <input type="text" name="surname" placeholder=
-            <fmt:message key="sign_up_page.surname"/> required pattern="^[a-zA-Zа-яА-Я]{2,25}$"
+            <fmt:message key="sign_up_page.surname"/> required pattern="^[a-zA-Z]{2,25}$"
                    oninvalid="this.setCustomValidity('<fmt:message key="sign_up_page.invalid_surname"/>')"
                    onchange="this.setCustomValidity('')" value="${signUpData['surname']}"/>
 
@@ -75,4 +78,6 @@
     </div>
 </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/main.js"></script>
 </html>

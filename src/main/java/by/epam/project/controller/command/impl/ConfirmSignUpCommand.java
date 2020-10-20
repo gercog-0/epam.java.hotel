@@ -30,8 +30,8 @@ public class ConfirmSignUpCommand implements Command {
         try {
             if (userRequestLogin.equals(userSessionLogin)) {
                 userService.activateUser(userRequestLogin);
-                request.setAttribute(MessageAttribute.ACTIVATION_MESSAGE, PropertiesMessageKey.SUCCESSFULLY_ACTIVATION);
-                router = new Router(PagePath.SIGN_IN);
+                request.setAttribute(MessageAttribute.ACTIVATION_MESSAGE, userRequestLogin);
+                router = new Router(PagePath.NOTIFICATION);
             } else {
                 router = new Router(PagePath.ERROR_404);
             }

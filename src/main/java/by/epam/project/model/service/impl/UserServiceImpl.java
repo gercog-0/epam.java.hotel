@@ -1,16 +1,21 @@
 package by.epam.project.model.service.impl;
 
+import by.epam.project.entity.Booking;
 import by.epam.project.entity.User;
 import by.epam.project.exception.DaoException;
 import by.epam.project.exception.ServiceException;
 import by.epam.project.model.dao.impl.UserDaoImpl;
 import by.epam.project.model.service.UserService;
 import by.epam.project.util.EncryptPassword;
-import by.epam.project.validator.impl.UserValidatorImpl;
+import by.epam.project.util.comparator.BookingComparator;
+import by.epam.project.util.comparator.UserComparator;
+import by.epam.project.validator.UserValidator;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static by.epam.project.util.RequestParameterName.*;
 
@@ -27,9 +32,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> signInUser(String login, String password) throws ServiceException {
         UserDaoImpl userDao = UserDaoImpl.getInstance();
-        UserValidatorImpl validator = UserValidatorImpl.getInstance();
 
-        if (!validator.isLoginCorrect(login) || !validator.isPasswordCorrect(password)) {
+        if (!UserValidator.isLoginCorrect(login) || !UserValidator.isPasswordCorrect(password)) {
             return Optional.empty();
         }
 
@@ -62,10 +66,9 @@ public class UserServiceImpl implements UserService {
 
     public Map<String, String> defineSignUpData(String login, String password
             , String email, String name, String surname, String phone) throws ServiceException {
-        UserValidatorImpl validator = UserValidatorImpl.getInstance();
         UserDaoImpl userDao = UserDaoImpl.getInstance();
 
-        Map<String, String> signUpData = validator.validateParameters(login, password, email, name, surname, phone);
+        Map<String, String> signUpData = UserValidator.validateParameters(login, password, email, name, surname, phone);
         try {
             signUpData.put(LOGIN_UNIQUE, userDao.findByLogin(login).isEmpty() ? login : NOT_UNIQUE);
             signUpData.put(EMAIL_UNIQUE, userDao.findByEmail(email).isEmpty() ? email : NOT_UNIQUE);
@@ -87,6 +90,17 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException(exp);
         }
         return userList;
+    }
+
+    @Override
+    public List<User> sortByParameter(List<User> users, String sortType) throws ServiceException {
+        try {
+            Comparator<User> currentComparator = UserComparator.valueOf(sortType.toUpperCase()).getComparator();
+            List<User> sortedList = users.stream().sorted(currentComparator).collect(Collectors.toList());
+            return sortedList;
+        } catch (IllegalArgumentException exp) {
+            throw new ServiceException("Unknown type of comparator.");
+        }
     }
 
     @Override
@@ -120,6 +134,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean paymentBooking(User user, double bookingPrice) throws ServiceException {
+        UserDaoImpl userDao = UserDaoImpl.getInstance();
+        double userBalance = user.getBalance();
+        boolean isPayment = false;
+        try {
+            if (Double.compare(userBalance, bookingPrice) >= 0) {
+                double resultBalance = userBalance - bookingPrice;
+                userDao.updateBalanceByLogin(user.getLogin(), resultBalance);
+                isPayment = true;
+            }
+        } catch (DaoException exp) {
+            throw new ServiceException(exp);
+        }
+        return isPayment;
+    }
+
+    @Override
     public boolean depositMoney(String login, double sum) throws ServiceException {
         UserDaoImpl userDao = UserDaoImpl.getInstance();
         boolean isMadeDeposit = false;
@@ -141,8 +172,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean updatePasswordByLogin(String login, String password) throws ServiceException {
         UserDaoImpl userDao = UserDaoImpl.getInstance();
-        UserValidatorImpl validator = UserValidatorImpl.getInstance();
-        if (!validator.isLoginCorrect(login) || !validator.isPasswordCorrect(password)) {
+        if (!UserValidator.isLoginCorrect(login) || !UserValidator.isPasswordCorrect(password)) {
             return false;
         }
         boolean isUpdate;

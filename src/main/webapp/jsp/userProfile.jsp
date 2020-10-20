@@ -26,46 +26,77 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/media.css">
-
-    <title>Profile</title>
+    <title><fmt:message key="user_profile.title"/></title>
 </head>
 
 <body>
 <div class="layout">
     <c:import url="${pageContext.request.contextPath}/jsp/header.jsp"/>
-    <div class="layout-body" style="background-image: url(${pageContext.request.contextPath}/images/cover6.jpg); background-size: cover;">
+    <div class="layout-body"
+         style="background-image: url(${pageContext.request.contextPath}/images/profile.jpg); background-size: cover;">
         <div class="account-section">
             <div class="container">
-                <h2 class="account-section__title">My booking</h2>
+                <h2 class="account-section__title"><fmt:message key="user_profile.subtitle"/></h2>
+                <c:if test="${not empty paymentErrorMessage}">
+                    <div class="account-error">
+                            ${paymentErrorMessage}
+                        <a href="#"><fmt:message key="user_profile.button_deposit"/></a>
+                    </div>
+                </c:if>
                 <div class="account-error">
-                    You have no enough money.
-                    <a href="#">Deposite</a>
+                    <fmt:message key="user_profile.login"/>: ${login}
+                </div>
+                <div class="account-error">
+                    <fmt:message key="user_profile.balance"/>: ${balance}
                 </div>
                 <div class="default-table-wrapper">
                     <table class="default-table">
-                        <tr>
-                            <th>Booking №</th>
-                            <th>Room №</th>
-                            <th>Arrival Date</th>
-                            <th>Departure Date</th>
-                            <th>Price</th>
-                            <th>Status</th>
-                            <th class="default-table__sort">
-                                <span>Sort by:</span>
-                                <a href="#">Arrival Date</a>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>losk</td>
-                            <td>512</td>
-                            <td>14.10.2020</td>
-                            <td>16.10.2020</td>
-                            <td>100$</td>
-                            <td>free</td>
-                            <td class="default-table__action">
-                                <a href="#" class="default-table__button default-table__button--green default-table__button--lg">Pay</a>
-                            </td>
-                        </tr>
+                        <c:choose>
+                            <c:when test="${empty personalBookings || personalBookings.size() == 0}">
+                                <tr>
+                                    <td><fmt:message key="user_profile.not_found_message"/></td>
+                                </tr>
+                            </c:when>
+                            <c:when test="${not empty personalBookings}">
+                                <tr>
+                                    <th><fmt:message key="user_profile.booking_number"/> №</th>
+                                    <th><fmt:message key="user_profile.room_number"/> №</th>
+                                    <th><fmt:message key="user_profile.arrival_date"/></th>
+                                    <th><fmt:message key="user_profile.departure_date"/></th>
+                                    <th><fmt:message key="user_profile.price"/></th>
+                                    <th><fmt:message key="user_profile.status"/></th>
+                                    <th class="default-table__sort">
+                                        <span><fmt:message key="user_profile.sort_tag"/></span>
+                                        <a href="controller?command=sort_bookings&sortType=arrival_date">
+                                            <fmt:message key="user_profile.arrival_date"/>
+                                        </a>
+                                    </th>
+                                </tr>
+                                <c:forEach var="booking" items="${personalBookings}">
+                                    <tr>
+                                        <td>${booking.getBookingId()}</td>
+                                        <td>${booking.getRoom().getNumber()}</td>
+                                        <td>${booking.getArrivalDateString()}</td>
+                                        <td>${booking.getDepartureDateString()}</td>
+                                        <td>${booking.getTotalPrice()}$</td>
+                                        <td>${booking.getStatus()}</td>
+                                        <c:choose>
+                                            <c:when test="${booking.getStatus().getNameStatus() eq 'payment'}">
+                                                <td class="default-table__action">
+                                                    <a href="controller?command=payment&bookingId=${booking.getBookingId()}"
+                                                       class="default-table__button default-table__button--green default-table__button--lg">
+                                                        <fmt:message key="user_profile.button_pay"/>
+                                                    </a>
+                                                </td>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <td> </td>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </tr>
+                                </c:forEach>
+                            </c:when>
+                        </c:choose>
                     </table>
                 </div>
             </div>

@@ -2,6 +2,7 @@ package by.epam.project.controller.command.impl;
 
 import by.epam.project.controller.Router;
 import by.epam.project.controller.command.Command;
+import by.epam.project.controller.command.MessageAttribute;
 import by.epam.project.controller.command.PagePath;
 import by.epam.project.exception.ServiceException;
 import by.epam.project.model.service.UserService;
@@ -23,12 +24,12 @@ public class UnBanUserCommand implements Command {
         Router router;
         String loginUser = request.getParameter(USER_LOGIN);
         try {
-            userService.banUser(loginUser);
-            // TODO: 09.10.2020 redirect to this page again  
-            router = new Router();
-        } catch (ServiceException exp){
+            userService.unBanUser(loginUser);
+            request.setAttribute(MessageAttribute.UNBAN_LOGIN_USER, loginUser);
+            router = new Router(PagePath.NOTIFICATION);
+        } catch (ServiceException exp) {
             LOGGER.error(exp);
-            router =  new Router(PagePath.ERROR_500);
+            router = new Router(PagePath.ERROR_500);
         }
         return router;
     }

@@ -12,6 +12,7 @@ public class RequestParameterName {
     public static final String USER_IS_BANNED = "is_banned";
     public static final String USER_IS_ACTIVATED = "is_activated";
     public static final String USER_ROLE_ID = "roleId";
+    public static final String USER_TYPE_SORT = "sortType";
 
     public static final String ROOM_ID = "roomId";
     public static final String ROOM_NUMBER = "roomNumber";
@@ -19,6 +20,7 @@ public class RequestParameterName {
     public static final String ROOM_PRICE = "price";
     public static final String ROOM_PLACE_AMOUNT = "place_amount";
     public static final String ROOM_IS_ACTIVE = "is_active";
+    public static final String ROOM_TYPE_SORT = "type_sort";
 
     public static final String BOOKING_ID = "bookingId";
     public static final String BOOKING_ARRIVAL_DATE = "arrival_date";
@@ -27,10 +29,12 @@ public class RequestParameterName {
     public static final String BOOKING_USER_ID_FK = "userId_fk";
     public static final String BOOKING_ROOM_ID_FK = "roomId_fk";
     public static final String BOOKING_TOTAL_PRICE= "total_price";
+    public static final String BOOKING_TYPE_SORT = "sortType";
 
     public static final String LOGIN_UNIQUE = "loginUnique";
     public static final String EMAIL_UNIQUE = "emailUnique";
     public static final String PHONE_UNIQUE = "phoneUnique";
+    public static final String ROOM_NUMBER_UNIQUE = "numberUnique";
     public static final String NOT_UNIQUE = "notUnique";
 
     public static final String LANGUAGE = "language";
@@ -48,7 +52,7 @@ public class RequestParameterName {
     public static final String PLACE_AMOUNT_ROOM = "placeAmount";
     public static final String BOOKING_DATE_FROM = "arrivalDate";
     public static final String BOOKING_DATE_TO = "departureDate";
-    public static final String FREE_ROOMS = "freeRooms";
+    public static final String ROOMS = "rooms";
 
     public static final String COMMAND = "command";
     public static final String CURRENT_PAGE = "currentPage";

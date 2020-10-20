@@ -5,10 +5,11 @@ import by.epam.project.controller.command.Command;
 import by.epam.project.controller.command.MessageAttribute;
 import by.epam.project.controller.command.PagePath;
 import by.epam.project.controller.command.PropertiesMessageKey;
+import by.epam.project.controller.command.impl.util.CommandUtil;
 import by.epam.project.entity.User;
 import by.epam.project.exception.ServiceException;
 import by.epam.project.model.service.impl.UserServiceImpl;
-import by.epam.project.validator.impl.PaymentCardValidatorImpl;
+import by.epam.project.validator.PaymentCardValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,13 +17,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import java.util.Map;
+import java.util.Optional;
 
 import static by.epam.project.util.RequestParameterName.*;
 
 
 public class MakeDepositCommand implements Command {
-    private final UserServiceImpl service = UserServiceImpl.getInstance();
-    private final PaymentCardValidatorImpl validator = PaymentCardValidatorImpl.getInstance();
+    private UserServiceImpl service = UserServiceImpl.getInstance();
 
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -36,18 +37,26 @@ public class MakeDepositCommand implements Command {
             String dateCard = request.getParameter(DATE_CARD);
             String cvCodeCard = request.getParameter(CV_CODE_CARD);
             String transferAmountString = request.getParameter(TRANSFER_AMOUNT_CARD);
-            Map<String, String> checkedData = validator.validateParameters(numberCard,
+            Map<String, String> checkedData = PaymentCardValidator.validateParameters(numberCard,
                     dateCard, cvCodeCard, transferAmountString);
 
-            if (validator.defineIncorrectValues(checkedData)) {
-                String loginUser = ((User) (session.getAttribute(MessageAttribute.USER))).getLogin();
+            if (PaymentCardValidator.defineIncorrectValues(checkedData)) {
+                User currentUser = (User) session.getAttribute(MessageAttribute.USER);
                 double transferAmountValue = Double.parseDouble(transferAmountString);
-                service.depositMoney(loginUser, transferAmountValue);
+                Optional<User> userOptional = service.findUserById(currentUser.getId());
+                if (userOptional.isPresent()) {
+                    User updatedUser = userOptional.get();
+                    service.depositMoney(updatedUser.getLogin(), transferAmountValue);
+                    session.setAttribute(MessageAttribute.USER, updatedUser);
+                }
                 request.setAttribute(MessageAttribute.PAYMENT_MESSAGE,
                         PropertiesMessageKey.SUCCESSFULLY_DEPOSIT);
-                // TODO: 10.10.2020 redirect maybe + message about operation
-                router = new Router(PagePath.HOME);
+                request.setAttribute(MessageAttribute.DEPOSIT_MESSAGE , transferAmountString);
+                router = new Router(PagePath.NOTIFICATION);
             } else {
+                String locale = (String) session.getAttribute(MessageAttribute.LANGUAGE);
+                String messageWithLocale = CommandUtil.makePartWithLocale(locale, PropertiesMessageKey.CREDIT_CARD_ERROR_MESSAGE);
+                request.setAttribute(MessageAttribute.PAYMENT_ERROR_MESSAGE, messageWithLocale);
                 request.setAttribute(MessageAttribute.PAYMENT_CARD_DATA, checkedData);
                 router = new Router(PagePath.PAYMENT_CARD);
             }

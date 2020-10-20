@@ -9,9 +9,14 @@ import by.epam.project.model.creator.BookingCreator;
 import by.epam.project.model.dao.impl.BookingDaoImpl;
 import by.epam.project.model.service.BookingService;
 import by.epam.project.util.DateUtil;
+import by.epam.project.util.comparator.BookingComparator;
+import by.epam.project.util.comparator.RoomComparator;
 
+import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class BookingServiceImpl implements BookingService {
     private static BookingServiceImpl instance = new BookingServiceImpl();
@@ -43,5 +48,80 @@ public class BookingServiceImpl implements BookingService {
             throw new ServiceException(exp);
         }
         return isMade;
+    }
+
+    @Override
+    public List<Booking> findBookingsByUserId(int id) throws ServiceException {
+        BookingDaoImpl bookingDao = BookingDaoImpl.getInstance();
+        List<Booking> bookings;
+        try {
+            bookings = bookingDao.findAllByIdUser(id);
+        } catch (DaoException exp) {
+            throw new ServiceException(exp);
+        }
+        return bookings;
+    }
+
+    @Override
+    public List<Booking> findBookingsByStatus(String status) throws ServiceException {
+        BookingDaoImpl bookingDao = BookingDaoImpl.getInstance();
+        List<Booking> bookings;
+        try {
+            bookings = bookingDao.findByStatus(status);
+        } catch (DaoException exp) {
+            throw new ServiceException(exp);
+        }
+        return bookings;
+    }
+
+    @Override
+    public List<Booking> findAllBookings() throws ServiceException {
+        BookingDaoImpl bookingDao = BookingDaoImpl.getInstance();
+        List<Booking> bookings;
+        try {
+            bookings = bookingDao.findAll();
+        } catch (DaoException exp) {
+            throw new ServiceException(exp);
+        }
+        return bookings;
+    }
+
+    @Override
+    public List<Booking> sortByParameter(List<Booking> bookings, String sortType) throws ServiceException {
+        try {
+            Comparator<Booking> currentComparator = BookingComparator.valueOf(sortType.toUpperCase()).getComparator();
+            List<Booking> sortedList = bookings.stream().sorted(currentComparator).collect(Collectors.toList());
+            return sortedList;
+        } catch (IllegalArgumentException exp) {
+            throw new ServiceException("Unknown type of comparator.");
+        }
+    }
+
+    @Override
+    public Optional<Booking> findBookingById(String id) throws ServiceException {
+        BookingDaoImpl bookingDao = BookingDaoImpl.getInstance();
+        Optional<Booking> foundBooking;
+        try {
+            int bookingId = Integer.parseInt(id);
+            foundBooking = bookingDao.findById(bookingId);
+        } catch (DaoException exp) {
+            throw new ServiceException(exp);
+        }
+        return foundBooking;
+    }
+
+    @Override
+    public boolean updateBookingStatus(String id, String status) throws ServiceException {
+        BookingDaoImpl bookingDao = BookingDaoImpl.getInstance();
+        try {
+            int bookingId = Integer.parseInt(id);
+            Optional<Booking.Status> optionalStatus = Booking.Status.getStatusByValue(status);
+            if (optionalStatus.isPresent()) {
+                return bookingDao.updateStatusById(bookingId, status);
+            }
+        } catch (DaoException exp) {
+            throw new ServiceException(exp);
+        }
+        return false;
     }
 }

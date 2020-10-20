@@ -122,7 +122,7 @@ public class RoomDaoImpl implements RoomDao {
         try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(SqlQuery.SET_ACTIVE_ROOM_STATUS)) {
             statement.setInt(1, number);
-            isUpdate = statement.executeUpdate() == 1;
+            isUpdate = statement.executeUpdate() > 0;
         } catch (SQLException exp) {
             throw new DaoException(exp);
         }
@@ -135,7 +135,7 @@ public class RoomDaoImpl implements RoomDao {
         try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(SqlQuery.SET_INACTIVE_ROOM_STATUS)) {
             statement.setInt(1, number);
-            isUpdate = statement.executeUpdate() == 1;
+            isUpdate = statement.executeUpdate() > 0;
         } catch (SQLException exp) {
             throw new DaoException(exp);
         }

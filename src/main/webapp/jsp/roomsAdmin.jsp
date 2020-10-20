@@ -1,164 +1,161 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: USER
+  Created by Yanushkevich Ivan.
   Date: 15.10.2020
   Time: 13:58
-  To change this template use File | Settings | File Templates.
+  Page to show all rooms, add new or change status of them
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
+<c:choose>
+    <c:when test="${not empty language}"> <fmt:setLocale value="${language}"/></c:when>
+    <c:when test="${empty language}"> <fmt:setLocale value="en"/></c:when>
+</c:choose>
+
+<fmt:setBundle basename="pagecontent.language"/>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Lato:wght@300;400;500;700&display=swap"
           rel="stylesheet">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/media.css">
-    <title>Home</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/media.css">
+    <title><fmt:message key="rooms_page.title"/></title>
 </head>
 
 <body>
 <div class="layout">
-    <div class="layout-header">
-        <div class="container">
-            <div class="layout-header__row">
-                <a href="#" class="logo">
-                    <div class="logo__subtitle">The greatest and most reputable</div>
-                    Deluxe Hotel
-                </a>
-                <div class="layout-header__menu">
-                    <ul class="navigation">
-                        <li class="navigation__item">
-                            <a href="#" class="navigation__link">Sign In</a>
-                        </li>
-                        <li class="navigation__item">
-                            <a href="#" class="navigation__link">Sign Up</a>
-                        </li>
-                        <li class="navigation__item">
-                            <a href="#" class="navigation__link">Account</a>
-                        </li>
-                        <li class="navigation__item">
-                            <a href="#" class="navigation__link">Log Out</a>
-                        </li>
-                    </ul>
-                    <div class="language-select">
-                        <div class="language-select__current">
-                            <span class="language-select__label">RU</span>
-                            <span class="language-select__arrow"></span>
-                        </div>
-                        <div class="language-select__dropdown">
-                            <ul class="menu">
-                                <li>
-                                    <a href="lang=ru"><span>Russian</span></a>
-                                </li>
-                                <li>
-                                    <a href="lang=ru"> <span>English</span></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <c:import url="${pageContext.request.contextPath}/jsp/header.jsp"/>
     <div class="layout-body"
-         style="background-image: url(img/texture.png); background-repeat: repeat; background-size: auto; background-attachment: fixed;">
+         style="background-image: url(${pageContext.request.contextPath}/images/texture.png); background-repeat: repeat; background-size: auto; background-attachment: fixed;">
         <div class="admin-section">
             <div class="container">
                 <div class="add-rooms-form">
-                    <h3 class="add-rooms-form__title">Add room</h3>
-                    <form action="" class="form">
+                    <h3 class="add-rooms-form__title"><fmt:message key="rooms_page.add_room"/></h3>
+                    <form action="controller" method="post" class="form">
                         <div class="form-grid">
                             <div class="form__item">
                                 <div class="form-group">
                                     <span class="form-label">Number</span>
-                                    <input type="text" class="form-control" placeholder="Input number of room">
+                                    <input type="text" class="form-control" name="roomNumber"
+                                           placeholder="<fmt:message key="rooms_page.select_number"/>" required
+                                           pattern="^\d{3}$"
+                                           oninvalid="this.setCustomValidity('<fmt:message
+                                                   key="rooms_page.incorrect_number"/>')"
+                                           onchange="this.setCustomValidity('')" value="${roomData['roomNumber']}"/>
                                 </div>
                             </div>
                             <div class="form__item">
                                 <div class="form-group">
-                                    <span class="form-label">Comfort Type</span>
+                                    <span class="form-label"><fmt:message key="rooms_page.comfort_type"/></span>
                                     <select class="form-control" required name="comfort">
-                                        <option value="" selected hidden>Select room type</option>
-                                        <option value="standart">standart</option>
-                                        <option value="economy">economy</option>
-                                        <option value="luxury">luxury</option>
+                                        <option value="" selected hidden><fmt:message
+                                                key="rooms_page.select_type"/></option>
+                                        <option value="economy"><fmt:message key="rooms_page.economy"/></option>
+                                        <option value="standard"><fmt:message key="rooms_page.standard"/></option>
+                                        <option value="luxury"><fmt:message key="rooms_page.luxury"/></option>
+                                        <option value="apartments"><fmt:message key="rooms_page.apartments"/></option>
                                     </select>
                                     <span class="select-arrow"></span>
                                 </div>
                             </div>
                             <div class="form__item">
                                 <div class="form-group">
-                                    <span class="form-label">Places</span>
-                                    <select class="form-control" required name="places">
-                                        <option value="" selected hidden>Select count places</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
+                                    <span class="form-label"><fmt:message key="rooms_page.places"/></span>
+                                    <select class="form-control" required name="place_amount">
+                                        <option value="" selected hidden><fmt:message
+                                                key="rooms_page.select_places"/></option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
                                     </select>
                                     <span class="select-arrow"></span>
                                 </div>
                             </div>
                             <div class="form__item">
                                 <div class="form-group">
-                                    <span class="form-label">Price</span>
-                                    <input type="text" class="form-control" placeholder="Input price of room">
+                                    <span class="form-label"><fmt:message key="rooms_page.price"/></span>
+                                    <input type="text" class="form-control" name="price"
+                                           placeholder="Input price of room" required pattern="^\d+\.?\d+$"
+                                           oninvalid="this.setCustomValidity('<fmt:message
+                                                   key="rooms_page.incorrect_price"/>')"
+                                           onchange="this.setCustomValidity('')" value="${roomData['price']}"/>
                                 </div>
                             </div>
                             <div class="form__item">
                                 <div class="form-btn">
-                                    <button type="submit" class="submit-btn">Add room</button>
+                                    <input type="hidden" name="command" value="add_room">
+                                    <button type="submit" class="submit-btn"><fmt:message
+                                            key="rooms_page.add_room_button"/></button>
                                 </div>
                             </div>
                         </div>
-                        <!-- ошибка валидации -->
-                        <div class="form-error">
-                            <p>Something was wrong!!!!</p>
-                        </div>
+                        <c:if test="${roomData['numberUnique'] eq 'notUnique'}">
+                            <div class="form-error">
+                                <p><fmt:message key="rooms_page.room_number_error"/></p>
+                            </div>
+                        </c:if>
                     </form>
                 </div>
-                <h2 class="admin-section__title">Rooms</h2>
+                <h2 class="admin-section__title"><fmt:message key="rooms_page.rooms"/></h2>
                 <div class="default-table-wrapper">
                     <table class="default-table">
                         <tr>
-                            <th>Number</th>
-                            <th>Type</th>
-                            <th>Places</th>
-                            <th>Price</th>
-                            <th>Status</th>
+                            <th><fmt:message key="rooms_page.number"/></th>
+                            <th><fmt:message key="rooms_page.type"/></th>
+                            <th><fmt:message key="rooms_page.places"/></th>
+                            <th><fmt:message key="rooms_page.price"/></th>
+                            <th>ACTIVE</th>
                             <th class="default-table__sort">
-                                <span>Sort by:</span>
-                                <a href="#">Status</a>
+                                <span><fmt:message key="rooms_page.sort_by"/>:</span>
+                                <a href="controller?command=sort_rooms&type_sort=price"><fmt:message
+                                        key="rooms_page.price_type_sort"/></a>
+                                <a href="controller?command=sort_rooms&type_sort=place_amount"><fmt:message
+                                        key="rooms_page.places_type_sort"/></a>
                             </th>
                         </tr>
-                        <tr>
-                            <td>losk</td>
-                            <td>comfort</td>
-                            <td>3</td>
-                            <td>500$</td>
-                            <td>free</td>
-                            <td class="default-table__action">
-                                <a href="#" class="default-table__button default-table__button--green">Active</a>
-                                <a href="#" class="default-table__button default-table__button--red">Not active</a>
-                            </td>
-                        </tr>
+                        <c:forEach var="room" items="${rooms}">
+                            <tr>
+                                <td>${room.getNumber()}</td>
+                                <td>${room.getComfort()}</td>
+                                <td>${room.getPlaceAmount()}</td>
+                                <td>${room.getPrice()}</td>
+                                <td>${room.isActive()}</td>
+                                <c:choose>
+                                    <c:when test="${room.isActive() == true}">
+                                        <td class="default-table__action">
+                                            <a href="controller?command=disable_room&roomNumber=${room.getNumber()}"
+                                               class="default-table__button default-table__button--red"><fmt:message
+                                                    key="rooms_page.disable_button"/></a>
+                                        </td>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <td class="default-table__action">
+                                            <a href="controller?command=activate_room&roomNumber=${room.getNumber()}"
+                                               class="default-table__button default-table__button--green"><fmt:message
+                                                    key="rooms_page.activate_button"/></a>
+                                        </td>
+                                    </c:otherwise>
+                                </c:choose>
+                            </tr>
+                        </c:forEach>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-    <div class="layout-footer">
-        <div class="container">
-            <div class="layout-footer__copyright">Copyright © Deluxe Hotel 2020</div>
-        </div>
-    </div>
+    <c:import url="${pageContext.request.contextPath}/jsp/footer.jsp"/>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="js/main.js"></script>
+<script src="${pageContext.request.contextPath}/js/main.js"></script>
 
 </html>

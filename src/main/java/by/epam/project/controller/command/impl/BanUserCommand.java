@@ -2,6 +2,7 @@ package by.epam.project.controller.command.impl;
 
 import by.epam.project.controller.Router;
 import by.epam.project.controller.command.Command;
+import by.epam.project.controller.command.MessageAttribute;
 import by.epam.project.controller.command.PagePath;
 import by.epam.project.exception.ServiceException;
 import by.epam.project.model.service.UserService;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import static by.epam.project.util.RequestParameterName.USER_LOGIN;
 
 public class BanUserCommand implements Command {
-    private UserService userService = UserServiceImpl.getInstance();
+    private UserServiceImpl userService = UserServiceImpl.getInstance();
 
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -23,9 +24,9 @@ public class BanUserCommand implements Command {
         Router router;
         String loginUser = request.getParameter(USER_LOGIN);
         try {
-            userService.unBanUser(loginUser);
-            // TODO: 09.10.2020 redirect to this page again
-            router = new Router();
+            userService.banUser(loginUser);
+            request.setAttribute(MessageAttribute.BAN_LOGIN_USER, loginUser);
+            router = new Router(PagePath.NOTIFICATION);
         } catch (ServiceException exp){
             LOGGER.error(exp);
             router =  new Router(PagePath.ERROR_500);

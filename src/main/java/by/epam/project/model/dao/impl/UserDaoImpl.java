@@ -157,7 +157,7 @@ public class UserDaoImpl implements UserDao {
         try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(SqlQuery.ACTIVATE_USER)) {
             statement.setString(1, login);
-            isUpdate = statement.executeUpdate() == 1;
+            isUpdate = statement.executeUpdate() > 0;
         } catch (SQLException exp) {
             throw new DaoException(exp);
         }
@@ -170,7 +170,7 @@ public class UserDaoImpl implements UserDao {
         try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(SqlQuery.BAN_USER)) {
             statement.setString(1, login);
-            isUpdate = statement.executeUpdate() == 1;
+            isUpdate = statement.executeUpdate() > 0;
         } catch (SQLException exp) {
             throw new DaoException(exp);
         }
@@ -183,7 +183,7 @@ public class UserDaoImpl implements UserDao {
         try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(SqlQuery.UN_BANE_USER)) {
             statement.setString(1, login);
-            isUpdate = statement.executeUpdate() == 1;
+            isUpdate = statement.executeUpdate() > 0;
         } catch (SQLException exp) {
             throw new DaoException(exp);
         }

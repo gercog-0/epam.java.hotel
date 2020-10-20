@@ -3,6 +3,7 @@ package by.epam.project.util;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Optional;
@@ -25,11 +26,17 @@ public class DateUtil {
     public static Optional<Date> parseStringToDateFormat(String dateString) {
         Optional<Date> dateFormat;
         try {
-            dateFormat = Optional.of(DATE_FORMAT.parse(dateString));
+            Date date = DATE_FORMAT.parse(dateString);
+            dateFormat = Optional.of(date);
         } catch (ParseException exp) {
             dateFormat = Optional.empty();
         }
         return dateFormat;
+    }
+
+    public static String parseDateToStringFormat(Date date){
+        String stringFormat = DATE_FORMAT.format(date);
+        return stringFormat;
     }
 
     public static long parseDateToMilliseconds(Date date) {
@@ -49,8 +56,6 @@ public class DateUtil {
 
     public static Date parseMillisecondsToDate(long milliseconds) {
         Date date = new Date(milliseconds);
-        String dateStringFormat = DATE_FORMAT.format(date);
-        Optional<Date> dateFormat = parseStringToDateFormat(dateStringFormat);
         return date;
     }
 }
