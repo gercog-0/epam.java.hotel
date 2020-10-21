@@ -1,16 +1,15 @@
 package by.epam.project.model.service.impl;
 
-import by.epam.project.entity.Booking;
-import by.epam.project.entity.Room;
-import by.epam.project.entity.User;
 import by.epam.project.exception.DaoException;
 import by.epam.project.exception.ServiceException;
 import by.epam.project.model.creator.BookingCreator;
 import by.epam.project.model.dao.impl.BookingDaoImpl;
+import by.epam.project.model.entity.Booking;
+import by.epam.project.model.entity.Room;
+import by.epam.project.model.entity.User;
 import by.epam.project.model.service.BookingService;
 import by.epam.project.util.DateUtil;
 import by.epam.project.util.comparator.BookingComparator;
-import by.epam.project.util.comparator.RoomComparator;
 
 import java.util.Comparator;
 import java.util.Date;

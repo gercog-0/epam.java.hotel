@@ -1,14 +1,10 @@
 package by.epam.project.model.dao;
 
-import by.epam.project.entity.User;
 import by.epam.project.exception.DaoException;
-import by.epam.project.model.creator.UserCreator;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import by.epam.project.model.entity.User;
+
 import java.util.Optional;
-
-import static by.epam.project.util.RequestParameterName.*;
 
 public interface UserDao extends BaseDao<User> {
     Optional<User> findById(int id) throws DaoException;

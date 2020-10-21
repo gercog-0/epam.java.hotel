@@ -1,4 +1,4 @@
-package by.epam.project.entity;
+package by.epam.project.model.entity;
 
 public class Account extends Entity {
     private int id;

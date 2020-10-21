@@ -1,7 +1,6 @@
 package by.epam.project.util.comparator;
 
-import by.epam.project.entity.Room;
-import by.epam.project.entity.User;
+import by.epam.project.model.entity.User;
 
 import java.util.Comparator;
 

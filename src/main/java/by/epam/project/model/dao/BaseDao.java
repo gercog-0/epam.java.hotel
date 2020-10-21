@@ -1,13 +1,14 @@
 package by.epam.project.model.dao;
 
-import by.epam.project.entity.Booking;
-import by.epam.project.entity.Entity;
-import by.epam.project.entity.Room;
-import by.epam.project.entity.User;
+
+import by.epam.project.model.entity.Booking;
+import by.epam.project.model.entity.Entity;
 import by.epam.project.exception.DaoException;
 import by.epam.project.model.creator.BookingCreator;
 import by.epam.project.model.creator.RoomCreator;
 import by.epam.project.model.creator.UserCreator;
+import by.epam.project.model.entity.Room;
+import by.epam.project.model.entity.User;
 import by.epam.project.util.DateUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

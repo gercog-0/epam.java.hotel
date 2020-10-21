@@ -1,8 +1,8 @@
 package by.epam.project.model.creator;
 
-import by.epam.project.entity.Booking;
-import by.epam.project.entity.Room;
-import by.epam.project.entity.User;
+import by.epam.project.model.entity.Booking;
+import by.epam.project.model.entity.Room;
+import by.epam.project.model.entity.User;
 
 import java.util.Date;
 

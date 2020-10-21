@@ -1,13 +1,11 @@
 package by.epam.project.model.service.impl;
 
-import by.epam.project.entity.Booking;
-import by.epam.project.entity.User;
 import by.epam.project.exception.DaoException;
 import by.epam.project.exception.ServiceException;
 import by.epam.project.model.dao.impl.UserDaoImpl;
+import by.epam.project.model.entity.User;
 import by.epam.project.model.service.UserService;
 import by.epam.project.util.EncryptPassword;
-import by.epam.project.util.comparator.BookingComparator;
 import by.epam.project.util.comparator.UserComparator;
 import by.epam.project.validator.UserValidator;
 

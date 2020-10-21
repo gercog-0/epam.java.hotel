@@ -1,9 +1,9 @@
 package by.epam.project.model.service.impl;
 
-import by.epam.project.entity.Room;
 import by.epam.project.exception.DaoException;
 import by.epam.project.exception.ServiceException;
 import by.epam.project.model.dao.impl.RoomDaoImpl;
+import by.epam.project.model.entity.Room;
 import by.epam.project.model.service.RoomService;
 import by.epam.project.util.DateUtil;
 import by.epam.project.util.comparator.RoomComparator;

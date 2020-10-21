@@ -1,7 +1,7 @@
 package by.epam.project.model.service;
 
-import by.epam.project.entity.Room;
 import by.epam.project.exception.ServiceException;
+import by.epam.project.model.entity.Room;
 
 import java.util.Date;
 import java.util.List;

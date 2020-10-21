@@ -1,4 +1,4 @@
-package by.epam.project.entity;
+package by.epam.project.model.entity;
 
 import by.epam.project.util.DateUtil;
 

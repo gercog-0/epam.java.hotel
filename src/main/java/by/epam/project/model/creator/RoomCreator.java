@@ -1,8 +1,6 @@
 package by.epam.project.model.creator;
 
-import by.epam.project.entity.Room;
-
-import java.util.Optional;
+import by.epam.project.model.entity.Room;
 
 public class RoomCreator {
     private static RoomCreator instance = new RoomCreator();

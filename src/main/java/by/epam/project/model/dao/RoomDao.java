@@ -1,16 +1,10 @@
 package by.epam.project.model.dao;
 
-import by.epam.project.entity.Room;
+import by.epam.project.model.entity.Room;
 import by.epam.project.exception.DaoException;
-import by.epam.project.model.creator.RoomCreator;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
-
-import static by.epam.project.util.RequestParameterName.*;
-
 
 public interface RoomDao extends BaseDao<Room> {
     Optional<Room> findByNumber(int number) throws DaoException;

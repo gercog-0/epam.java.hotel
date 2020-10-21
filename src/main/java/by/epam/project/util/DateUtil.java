@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public class DateUtil {
     private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
-    private static final int INCORRECT_DEFAULT_RETURN_VALUE = -1;
+    private static final long INCORRECT_DEFAULT_RETURN_VALUE = -1L;
 
     private DateUtil() {
     }

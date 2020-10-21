@@ -4,15 +4,14 @@ import by.epam.project.controller.Router;
 import by.epam.project.controller.command.Command;
 import by.epam.project.controller.command.MessageAttribute;
 import by.epam.project.controller.command.PagePath;
-import by.epam.project.entity.Booking;
 import by.epam.project.exception.ServiceException;
+import by.epam.project.model.entity.Booking;
 import by.epam.project.model.service.impl.BookingServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.awt.print.Book;
 import java.util.List;
 
 public class PassingToWaitingBookingsAdminCommand implements Command {

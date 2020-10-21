@@ -1,6 +1,6 @@
 package by.epam.project.model.creator;
 
-import by.epam.project.entity.User;
+import by.epam.project.model.entity.User;
 
 public class UserCreator {
     public static UserCreator instance = new UserCreator();
@@ -14,7 +14,7 @@ public class UserCreator {
 
     public User createUser(int userId, String userLogin, String userEmail, String userName,
                            String userSurname, String userPhone, double userBalance,
-                           boolean userIsBanned, boolean userIsActivated, int userRoleId){
+                           boolean userIsBanned, boolean userIsActivated, int userRoleId) {
 
         User createdUser = new User(userId, userLogin, userEmail, userName, userSurname,
                 userPhone, userBalance, userIsBanned, userIsActivated, userRoleId);
@@ -22,7 +22,7 @@ public class UserCreator {
     }
 
     public User createUser(String userLogin, String userEmail, String userName,
-                           String userSurname, String userPhone,  int userRoleId) {
+                           String userSurname, String userPhone, int userRoleId) {
 
         User createdUser = new User(userLogin, userEmail, userName, userSurname, userPhone, userRoleId);
         return createdUser;

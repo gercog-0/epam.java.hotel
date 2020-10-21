@@ -1,10 +1,10 @@
 package by.epam.project.model.dao.impl;
 
-import by.epam.project.entity.Room;
 import by.epam.project.exception.DaoException;
 import by.epam.project.model.connection.ConnectionPool;
 import by.epam.project.model.dao.RoomDao;
 import by.epam.project.model.dao.SqlQuery;
+import by.epam.project.model.entity.Room;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

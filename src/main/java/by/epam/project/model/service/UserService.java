@@ -1,8 +1,7 @@
 package by.epam.project.model.service;
 
-import by.epam.project.entity.Booking;
-import by.epam.project.entity.User;
 import by.epam.project.exception.ServiceException;
+import by.epam.project.model.entity.User;
 
 import java.util.List;
 import java.util.Optional;

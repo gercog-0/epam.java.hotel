@@ -1,10 +1,8 @@
 package by.epam.project.model.service;
 
-import by.epam.project.entity.User;
+import by.epam.project.model.entity.User;
 import by.epam.project.util.MailSender;
 
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 public class EmailMessageService {
     private static final EmailMessageService instance =

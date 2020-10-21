@@ -1,10 +1,10 @@
 package by.epam.project.model.dao.impl;
 
-import by.epam.project.entity.User;
 import by.epam.project.exception.DaoException;
 import by.epam.project.model.connection.ConnectionPool;
 import by.epam.project.model.dao.SqlQuery;
 import by.epam.project.model.dao.UserDao;
+import by.epam.project.model.entity.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
