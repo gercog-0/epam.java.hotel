@@ -41,7 +41,7 @@
                         <h2><fmt:message key="booking.help_subtitle"/></h2>
                         <p><fmt:message key="booking.help_body"/></p>
                     </div>
-                    <form action="controller" method="post" class="form">
+                    <form action="DeluxeHotel" method="post" class="form">
                         <div class="form-grid">
                             <div class="form__item">
                                 <div class="form-group">
@@ -92,9 +92,9 @@
                         <c:if test="${not empty rooms}">
                         <div class="rooms__sort">
                             <span class="rooms__label"><fmt:message key="booking.sort_by"/></span>
-                            <a href="controller?command=sort_rooms&type_sort=price"
+                            <a href="DeluxeHotel?command=sort_rooms&type_sort=price"
                                class="rooms__sort-link"><fmt:message key="booking.price"/></a>
-                            <a href="controller?command=sort_rooms&type_sort=place_amount"
+                            <a href="DeluxeHotel?command=sort_rooms&type_sort=place_amount"
                                class="rooms__sort-link"><fmt:message key="booking.places"/></a>
                         </div>
                         </c:if>
@@ -126,7 +126,7 @@
                                         <td>${room.getPlaceAmount()}</td>
                                         <td>${room.getPrice()}$</td>
                                         <td class="rooms-table__action">
-                                            <a href="controller?command=booking&roomNumber=${room.getNumber()}"
+                                            <a href="DeluxeHotel?command=booking&roomNumber=${room.getNumber()}"
                                                class="rooms-table__button">
                                                 <fmt:message key="booking.book_button"/>
                                             </a>

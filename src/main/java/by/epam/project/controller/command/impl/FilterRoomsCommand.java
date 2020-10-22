@@ -18,6 +18,9 @@ import java.util.List;
 
 import static by.epam.project.util.RequestParameterName.*;
 
+/**
+ * The type Filter rooms command.
+ */
 public class FilterRoomsCommand implements Command {
     private RoomServiceImpl roomService = RoomServiceImpl.getInstance();
 

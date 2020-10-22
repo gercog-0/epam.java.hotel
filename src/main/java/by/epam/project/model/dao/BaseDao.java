@@ -23,13 +23,39 @@ import java.util.Optional;
 import static by.epam.project.util.RequestParameterName.*;
 import static by.epam.project.util.RequestParameterName.USER_ROLE_ID;
 
+/**
+ * The interface Base dao.
+ *
+ * @param <T> the type parameter
+ */
 public interface BaseDao<T extends Entity> {
+    /**
+     * The constant logger.
+     */
     Logger logger = LogManager.getLogger();
 
+    /**
+     * Add boolean.
+     *
+     * @param t the t
+     * @return the boolean
+     * @throws DaoException the dao exception
+     */
     boolean add(T t) throws DaoException;
 
+    /**
+     * Find all list.
+     *
+     * @return the list
+     * @throws DaoException the dao exception
+     */
     List<T> findAll() throws DaoException;
 
+    /**
+     * Close statement.
+     *
+     * @param statement the statement
+     */
     default void closeStatement(PreparedStatement statement) {
         if (statement != null) {
             try {
@@ -40,6 +66,11 @@ public interface BaseDao<T extends Entity> {
         }
     }
 
+    /**
+     * Close result set.
+     *
+     * @param resultSet the result set
+     */
     default void closeResultSet(ResultSet resultSet) {
         if (resultSet != null) {
             try {
@@ -50,6 +81,13 @@ public interface BaseDao<T extends Entity> {
         }
     }
 
+    /**
+     * Create user from result set user.
+     *
+     * @param resultSet the result set
+     * @return the user
+     * @throws DaoException the dao exception
+     */
     default User createUserFromResultSet(ResultSet resultSet) throws DaoException {
         UserCreator creator = UserCreator.getInstance();
 
@@ -73,7 +111,14 @@ public interface BaseDao<T extends Entity> {
         }
     }
 
-    default Room createRoomFromResultSet(ResultSet resultSet) throws DaoException {
+    /**
+     * Create room from result set room.
+     *
+     * @param resultSet the result set
+     * @return the room
+     * @throws DaoException the dao exception
+     */
+    default   Room createRoomFromResultSet(ResultSet resultSet) throws DaoException {
         RoomCreator creator = RoomCreator.getInstance();
 
         try {
@@ -96,6 +141,13 @@ public interface BaseDao<T extends Entity> {
         }
     }
 
+    /**
+     * Create booking from result set booking.
+     *
+     * @param resultSet the result set
+     * @return the booking
+     * @throws DaoException the dao exception
+     */
     default Booking createBookingFromResultSet(ResultSet resultSet) throws DaoException {
         BookingCreator creator = BookingCreator.getInstance();
 

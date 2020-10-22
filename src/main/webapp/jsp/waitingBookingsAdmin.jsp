@@ -55,7 +55,7 @@
                                         <c:when test="${showCommand}">
                                             <th class="default-table__sort">
                                         <span>
-                                            <a href="controller?command=passing_waiting_bookings_admin">
+                                            <a href="DeluxeHotel?command=passing_waiting_bookings_admin">
                                                 <fmt:message key="admin_page.show_active_bookings"/>
                                             </a>
                                         </span>
@@ -64,7 +64,7 @@
                                         <c:otherwise>
                                             <th class="default-table__sort">
                                         <span>
-                                            <a href="controller?command=show_all_bookings">
+                                            <a href="DeluxeHotel?command=show_all_bookings">
                                                 <fmt:message key="admin_page.show_all_bookings"/>
                                             </a>
                                         </span>
@@ -82,11 +82,11 @@
                                         <c:choose>
                                             <c:when test="${booking.getStatus() eq 'WAITING'}">
                                                 <td class="default-table__action">
-                                                    <a href="controller?command=approve_booking&bookingId=${booking.getBookingId()}"
+                                                    <a href="DeluxeHotel?command=approve_booking&bookingId=${booking.getBookingId()}"
                                                        class="default-table__button default-table__button--green">
                                                         <fmt:message key="admin_page.approve_button"/>
                                                     </a>
-                                                    <a href="controller?command=rejected_booking&bookingId=${booking.getBookingId()}"
+                                                    <a href="DeluxeHotel?command=rejected_booking&bookingId=${booking.getBookingId()}"
                                                        class="default-table__button default-table__button--red">
                                                         <fmt:message key="admin_page.reject_button"/>
                                                     </a>
@@ -97,7 +97,7 @@
                                             </c:when>
                                             <c:otherwise>
                                                 <td class="default-table__action">
-                                                    <a href="controller?command=rejected_booking&bookingId=${booking.getBookingId()}"
+                                                    <a href="DeluxeHotel?command=rejected_booking&bookingId=${booking.getBookingId()}"
                                                        class="default-table__button default-table__button--red">
                                                         <fmt:message key="admin_page.reject_button"/>
                                                     </a>

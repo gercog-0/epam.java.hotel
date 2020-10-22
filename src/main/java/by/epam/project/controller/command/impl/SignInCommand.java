@@ -1,10 +1,7 @@
 package by.epam.project.controller.command.impl;
 
 import by.epam.project.controller.Router;
-import by.epam.project.controller.command.Command;
-import by.epam.project.controller.command.MessageAttribute;
-import by.epam.project.controller.command.PagePath;
-import by.epam.project.controller.command.PropertiesMessageKey;
+import by.epam.project.controller.command.*;
 import by.epam.project.controller.command.impl.util.CommandUtil;
 import by.epam.project.exception.ServiceException;
 import by.epam.project.model.entity.User;
@@ -18,6 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
+/**
+ * The type Sign in command.
+ */
 public class SignInCommand implements Command {
     private UserServiceImpl userService = UserServiceImpl.getInstance();
 
@@ -44,7 +44,9 @@ public class SignInCommand implements Command {
                 } else {
                     session.setAttribute(MessageAttribute.USER, user);
                     session.setAttribute(MessageAttribute.USER_ROLE, user.getRole());
-                    router.setCurrentPage(PagePath.HOME);
+                    String redirectURL = createRedirectURL(request, CommandType.PASSING_HOME.toString().toLowerCase());
+                    router.setRedirect();
+                    router.setCurrentPage(redirectURL);
                 }
             } else {
                 String locale = (String) session.getAttribute(MessageAttribute.LANGUAGE);

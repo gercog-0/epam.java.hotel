@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import static by.epam.project.util.RequestParameterName.*;
 
 
+/**
+ * The type Confirm sign up command.
+ */
 public class ConfirmSignUpCommand implements Command {
     private UserService userService = UserServiceImpl.getInstance();
 

@@ -9,6 +9,9 @@ import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * The type Mail sender.
+ */
 public class MailSender {
     private String username;
     private String password;
@@ -19,6 +22,9 @@ public class MailSender {
     private static final String USER_PASSWORD_PROPERTIES = "mail.user.password";
     private static final Logger logger = LogManager.getLogger();
 
+    /**
+     * Instantiates a new Mail sender.
+     */
     public MailSender() {
         properties = new Properties();
         try {
@@ -28,6 +34,13 @@ public class MailSender {
         }
     }
 
+    /**
+     * Send message.
+     *
+     * @param subject the subject
+     * @param body    the body
+     * @param email   the email
+     */
     public void sendMessage(String subject, String body, String email) {
         username = properties.getProperty(USER_NAME_PROPERTIES);
         password = properties.getProperty(USER_PASSWORD_PROPERTIES);

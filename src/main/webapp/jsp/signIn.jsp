@@ -27,15 +27,17 @@ ${activationMessage}
 <div class="login-page">
     <c:import url="${pageContext.request.contextPath}/jsp/header.jsp"/>
     <div class="form">
-        <form action="controller" method="post" class="login-form">
-            <input type="text" name="login" placeholder=<fmt:message key="sign_up_page.login"/> />
-            <input type="password" name="password" placeholder=<fmt:message key="sign_up_page.password"/> />
+        <form action="DeluxeHotel" method="post" class="login-form">
+            <input type="text" name="login" placeholder=
+            <fmt:message key="sign_up_page.login"/> />
+            <input type="password" name="password" placeholder=
+            <fmt:message key="sign_up_page.password"/> />
 
             <input type="hidden" name="command" value="sign_in"/>
             <span class="error" style="color:#ff340a">${signInErrorMessage}</span>
             <button><span><fmt:message key="sign_in_page.sign_in"/></span></button>
             <p class="message"><fmt:message key="sign_in_page.not_registered"/>
-                <a href="controller?command=passing_sign_up"><fmt:message key="sign_in_page.create_account"/></a></p>
+                <a href="DeluxeHotel?command=passing_sign_up"><fmt:message key="sign_in_page.create_account"/></a></p>
         </form>
     </div>
 </div>

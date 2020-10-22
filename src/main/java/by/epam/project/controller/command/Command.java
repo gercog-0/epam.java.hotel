@@ -10,8 +10,11 @@ public interface Command {
     Router execute(HttpServletRequest request);
 
     default String createRedirectURL(HttpServletRequest request, String commandName) {
-        String redirectUrl = request.getContextPath() + request.getServletPath() + "?"
-                + COMMAND + "=" + commandName;
+        final String REDIRECT_QUESTION_MARK = "?";
+        final String REDIRECT_EQUAL_SIGN = "=";
+
+        String redirectUrl = request.getContextPath() + request.getServletPath()
+                + REDIRECT_QUESTION_MARK + COMMAND + REDIRECT_EQUAL_SIGN + commandName;
         return redirectUrl;
     }
 }

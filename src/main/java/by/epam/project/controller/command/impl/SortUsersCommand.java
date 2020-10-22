@@ -16,6 +16,9 @@ import java.util.List;
 
 import static by.epam.project.util.RequestParameterName.*;
 
+/**
+ * The type Sort users command.
+ */
 public class SortUsersCommand implements Command {
     private UserServiceImpl userService = UserServiceImpl.getInstance();
 

@@ -49,9 +49,9 @@
                             <th><fmt:message key="users_page.activated"/></th>
                             <th class="default-table__sort">
                                 <span>Sort by:</span>
-                                <a href="controller?command=sort_users&sortType=name">
+                                <a href="DeluxeHotel?command=sort_users&sortType=name">
                                     <fmt:message key="users_page.name"/></a>
-                                <a href="controller?command=sort_users&sortType=login"><fmt:message
+                                <a href="DeluxeHotel?command=sort_users&sortType=login"><fmt:message
                                         key="users_page.login"/></a>
                             </th>
                         </tr>
@@ -67,14 +67,14 @@
                                 <c:choose>
                                     <c:when test="${user.isBanned() == true}">
                                         <td class="default-table__action">
-                                            <a href="controller?command=un_ban_user&login=${user.getLogin()}"
+                                            <a href="DeluxeHotel?command=un_ban_user&login=${user.getLogin()}"
                                                class="default-table__button default-table__button--red"><fmt:message
                                                     key="users_page.unban_button"/></a>
                                         </td>
                                     </c:when>
                                     <c:otherwise>
                                         <td class="default-table__action">
-                                            <a href="controller?command=ban_user&login=${user.getLogin()}"
+                                            <a href="DeluxeHotel?command=ban_user&login=${user.getLogin()}"
                                                class="default-table__button default-table__button--green"><fmt:message
                                                     key="users_page.ban_button"/></a>
                                         </td>

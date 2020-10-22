@@ -16,6 +16,9 @@ import java.util.List;
 
 import static by.epam.project.util.RequestParameterName.ROOMS;
 
+/**
+ * The type Passing to rooms admin command.
+ */
 public class PassingToRoomsAdminCommand implements Command {
 
     private RoomServiceImpl roomService = RoomServiceImpl.getInstance();

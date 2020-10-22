@@ -18,10 +18,13 @@ import java.util.Map;
 
 import static by.epam.project.util.RequestParameterName.*;
 
+/**
+ * The type Sign up command.
+ */
 public class SignUpCommand implements Command {
     private UserServiceImpl service = UserServiceImpl.getInstance();
 
-    private static final String EMAIL_ACTIVATION_LINK = "http://localhost:8080/controller?command=confirm_sign_up&login=";
+    private static final String EMAIL_ACTIVATION_LINK = "http://localhost:8080/DeluxeHotel?command=confirm_sign_up&login=";
     private static final Logger LOGGER = LogManager.getLogger();
 
     @Override

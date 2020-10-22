@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import static by.epam.project.util.RequestParameterName.*;
 
+/**
+ * The type Un ban user command.
+ */
 public class UnBanUserCommand implements Command {
     private UserService userService = UserServiceImpl.getInstance();
 

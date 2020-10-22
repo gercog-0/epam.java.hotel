@@ -14,8 +14,11 @@ import java.io.IOException;
 
 import static by.epam.project.util.RequestParameterName.*;
 
+/**
+ * The type Servlet controller.
+ */
 @WebServlet("/controller")
-public class ServletController extends HttpServlet {
+public class FrontController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);

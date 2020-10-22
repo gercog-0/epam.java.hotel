@@ -296,7 +296,7 @@ img {
     margin: 0 auto;
     margin-bottom: 20px;
     background-color: #d6d6d6;
-    box-shadow: 0px 0px 8px 1px rgba(45, 45, 45, .25);
+    box-shadow: 0px 0px 8px 1px rgba(45, 45, 45, 25%);
     border-radius: 50%;
 }
 
@@ -867,6 +867,10 @@ img {
     box-shadow: 0 2px 20px 5px #0000008c;
 }
 
+.account-section .account-section__title {
+    margin-bottom: 0;
+}
+
 .account-error {
     font-size: 18px;
     color: #fff;
@@ -877,6 +881,30 @@ img {
     min-width: 300px;
     display: inline-block;
     margin: 0 auto 30px;
+}
+
+.account-section .account-section__head {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.account-section .account-section__info {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.account-section .account-section__login {
+    margin-right: 10px;
+}
+
+.account-section .account-section__balance,
+.account-section .account-section__login {
+    padding: 7px 10px;
+    background-color: #d8b45075;
 }
 
 

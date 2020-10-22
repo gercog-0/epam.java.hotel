@@ -29,23 +29,23 @@
 <div class="login-page">
     <c:import url="${pageContext.request.contextPath}/jsp/header.jsp"/>
     <div class="form">
-        <form action="controller" method="post" class="login-form">
+        <form action="DeluxeHotel" method="post" class="login-form">
             <input type="text" name="numberCard" placeholder="<fmt:message key="payment_card.card_number"/>"
                    required pattern="^[\d]{4}\s[\d]{4}\s[\d]{4}\s[\d]{4}$"
                    oninvalid="this.setCustomValidity('<fmt:message key="payment_card.incorrect_card_number"/>')"
-                   onchange="this.setCustomValidity('')" value="${paymentCardData['surname']}"/>
+                   onchange="this.setCustomValidity('')" value="${paymentCardData['numberCard']}"/>
             <input type="text" name="dateCard" placeholder="<fmt:message key="payment_card.date_card"/>"
-                   required pattern="^\\d{2}\\/\\d{2}$"
+                   required pattern="^\d{2}\/\d{2}$"
                    oninvalid="this.setCustomValidity('<fmt:message key="payment_card.incorrect_date_card"/>')"
-                   onchange="this.setCustomValidity('')" value="${paymentCardData['surname']}"/>
+                   onchange="this.setCustomValidity('')" value="${paymentCardData['dateCard']}"/>
             <input type="password" name="codeCard" placeholder="<fmt:message key="payment_card.code_card"/>"
                    required pattern="^[\d]{3}$"
                    oninvalid="this.setCustomValidity('<fmt:message key="payment_card.incorrect_code_card"/>')"
-                   onchange="this.setCustomValidity('')" value="${paymentCardData['surname']}"/>
+                   onchange="this.setCustomValidity('')" value="${paymentCardData['codeCard']}"/>
             <input type="text" name="transferAmount" placeholder="<fmt:message key="payment_card.sum"/>"
-                   required pattern="^\d+\.?\d+$"
+                   required pattern="^\d+\.?\d{1,2}$"
                    oninvalid="this.setCustomValidity('<fmt:message key="payment_card.incorrect_sum"/>')"
-                   onchange="this.setCustomValidity('')" value="${paymentCardData['surname']}"/>
+                   onchange="this.setCustomValidity('')" value="${paymentCardData['transferAmount']}"/>
             <input type="hidden" name="command" value="make_deposit"/>
             <span class="error" style="color:#ff340a">${paymentErrorMessage}</span>
             <button><span><fmt:message key="payment_card.button_pay"/></span></button>

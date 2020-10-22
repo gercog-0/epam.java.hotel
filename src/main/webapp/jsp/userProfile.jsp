@@ -36,19 +36,19 @@
          style="background-image: url(${pageContext.request.contextPath}/images/profile.jpg); background-size: cover;">
         <div class="account-section">
             <div class="container">
-                <h2 class="account-section__title"><fmt:message key="user_profile.subtitle"/></h2>
+                <div class="account-section__head">
+                    <h2 class="account-section__title"><fmt:message key="user_profile.subtitle"/></h2>
+                    <div class="account-section__info">
+                        <span class="account-section__login"><fmt:message key="user_profile.login"/>: ${login}</span>
+                        <span class="account-section__balance"><fmt:message key="user_profile.balance"/>: ${String.format('%.2f', balance)}$</span>
+                    </div>
+                </div>
                 <c:if test="${not empty paymentErrorMessage}">
                     <div class="account-error">
                             ${paymentErrorMessage}
-                        <a href="#"><fmt:message key="user_profile.button_deposit"/></a>
+                        <a href="DeluxeHotel?command=passing_payment_card"><fmt:message key="user_profile.button_deposit"/></a>
                     </div>
                 </c:if>
-                <div class="account-error">
-                    <fmt:message key="user_profile.login"/>: ${login}
-                </div>
-                <div class="account-error">
-                    <fmt:message key="user_profile.balance"/>: ${balance}
-                </div>
                 <div class="default-table-wrapper">
                     <table class="default-table">
                         <c:choose>
@@ -67,7 +67,7 @@
                                     <th><fmt:message key="user_profile.status"/></th>
                                     <th class="default-table__sort">
                                         <span><fmt:message key="user_profile.sort_tag"/></span>
-                                        <a href="controller?command=sort_bookings&sortType=arrival_date">
+                                        <a href="DeluxeHotel?command=sort_bookings&sortType=arrival_date">
                                             <fmt:message key="user_profile.arrival_date"/>
                                         </a>
                                     </th>
@@ -83,7 +83,7 @@
                                         <c:choose>
                                             <c:when test="${booking.getStatus().getNameStatus() eq 'payment'}">
                                                 <td class="default-table__action">
-                                                    <a href="controller?command=payment&bookingId=${booking.getBookingId()}"
+                                                    <a href="DeluxeHotel?command=payment&bookingId=${booking.getBookingId()}"
                                                        class="default-table__button default-table__button--green default-table__button--lg">
                                                         <fmt:message key="user_profile.button_pay"/>
                                                     </a>

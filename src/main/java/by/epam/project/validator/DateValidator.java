@@ -7,6 +7,9 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * The type Date validator.
+ */
 public class DateValidator {
     private static final int DATE_YEAR_INDEX = 0;
     private static final int DATE_MONTH_INDEX = 1;
@@ -22,6 +25,13 @@ public class DateValidator {
     private DateValidator() {
     }
 
+    /**
+     * Check date boolean.
+     *
+     * @param arrivalDate   the arrival date
+     * @param departureDate the departure date
+     * @return the boolean
+     */
     public static boolean checkDate(String arrivalDate, String departureDate) {
         boolean isCorrect = false;
         Date currentDay = DateUtil.takeCurrentDateFormat();
@@ -60,14 +70,32 @@ public class DateValidator {
         return isYearCorrect(year) && isMonthCorrect(month) && isDayCorrect(day);
     }
 
+    /**
+     * Is year correct boolean.
+     *
+     * @param year the year
+     * @return the boolean
+     */
     public static boolean isYearCorrect(int year) {
         return LOW_BORDER_YEAR <= year && year <= HIGH_BORDER_YEAR;
     }
 
+    /**
+     * Is month correct boolean.
+     *
+     * @param month the month
+     * @return the boolean
+     */
     public static boolean isMonthCorrect(int month) {
         return LOW_BORDER_MONTH_AND_DAY <= month && month <= HIGH_BORDER_MONTH;
     }
 
+    /**
+     * Is day correct boolean.
+     *
+     * @param day the day
+     * @return the boolean
+     */
     public static boolean isDayCorrect(int day) {
         return LOW_BORDER_MONTH_AND_DAY <= day && day <= HIGH_BORDER_DAY;
     }

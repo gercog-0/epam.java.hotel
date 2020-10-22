@@ -1,6 +1,9 @@
 package by.epam.project.controller.command;
 
 public class MessageAttribute {
+    /**
+     * These constants are used for working with the session
+     */
     public static final String SIGN_IN_ERROR_MESSAGE = "signInErrorMessage";
     public static final String FILTER_ROOMS_ERROR_MESSAGE = "filterRoomsErrorMessage";
     public static final String PAYMENT_ERROR_MESSAGE = "paymentErrorMessage";
@@ -16,7 +19,7 @@ public class MessageAttribute {
     public static final String ROOM_DATA = "roomData";
     public static final String SHOW_COMMAND = "showCommand";
 
-    /*
+    /**
     Notification message attribute
      */
     public static final String ACTIVATE_ROOM_NUMBER = "activateRoomNumber";

@@ -1,6 +1,10 @@
 package by.epam.project.controller.command;
 
 public class PropertiesMessageKey {
+    /**
+     * These fields are used as keys for displaying data on
+     * JSP pages based on localization.
+     */
     public static final String EMAIL_SUBJECT = "email.subject";
     public static final String EMAIL_BODY = "email.body";
     public static final String SUCCESSFULLY_ACTIVATION = "activation_page.successfully_activation";
@@ -9,9 +13,6 @@ public class PropertiesMessageKey {
     public static final String FILTER_ROOMS_INCORRECT_DATA = "booking.incorrect_data";
     public static final String PAYMENT_ERROR_MESSAGE = "user_profile.payment_error_message";
     public static final String CREDIT_CARD_ERROR_MESSAGE = "payment_card.error_message";
-    public static final String SUCCESSFULLY_DEPOSIT = "";
-    public static final String UNSUCCESSFULLY_DEPOSIT = "";
-
 
     private PropertiesMessageKey(){}
 }

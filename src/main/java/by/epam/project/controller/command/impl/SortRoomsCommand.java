@@ -15,6 +15,9 @@ import java.util.List;
 
 import static by.epam.project.util.RequestParameterName.*;
 
+/**
+ * The type Sort rooms command.
+ */
 public class SortRoomsCommand implements Command {
     private RoomServiceImpl roomService = RoomServiceImpl.getInstance();
 

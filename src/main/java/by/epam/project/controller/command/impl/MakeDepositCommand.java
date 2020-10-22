@@ -22,6 +22,9 @@ import java.util.Optional;
 import static by.epam.project.util.RequestParameterName.*;
 
 
+/**
+ * The type Make deposit command.
+ */
 public class MakeDepositCommand implements Command {
     private UserServiceImpl service = UserServiceImpl.getInstance();
 
@@ -32,6 +35,10 @@ public class MakeDepositCommand implements Command {
         Router router;
         HttpSession session = request.getSession();
 
+        /*
+         * This is where the real process of adding funds
+         * to your card account can be implemented
+         */
         try {
             String numberCard = request.getParameter(NUMBER_CARD);
             String dateCard = request.getParameter(DATE_CARD);
@@ -49,8 +56,6 @@ public class MakeDepositCommand implements Command {
                     service.depositMoney(updatedUser.getLogin(), transferAmountValue);
                     session.setAttribute(MessageAttribute.USER, updatedUser);
                 }
-                request.setAttribute(MessageAttribute.PAYMENT_MESSAGE,
-                        PropertiesMessageKey.SUCCESSFULLY_DEPOSIT);
                 request.setAttribute(MessageAttribute.DEPOSIT_MESSAGE , transferAmountString);
                 router = new Router(PagePath.NOTIFICATION);
             } else {

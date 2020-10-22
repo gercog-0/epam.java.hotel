@@ -1,6 +1,9 @@
 package by.epam.project.controller.command;
 
 public class PagePath {
+    /**
+     This class contains paths to JSP pages
+     */
     public final static String INDEX = "/index.jsp";
     public final static String HOME = "jsp/home.jsp";
     public final static String SIGN_IN = "jsp/signIn.jsp";

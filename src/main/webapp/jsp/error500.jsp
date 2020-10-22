@@ -27,9 +27,8 @@
         <div class="notification">
             <h3 class="notification__title">ERROR 500</h3>
             <p class="notification__text">
-                Request from ${pageContext.errorData.requestURI} is failed! <br/>
-                Status code : ${pageContext.errorData.statusCode} <br/>
-                Exception : ${pageContext.exception}
+                Request is failed! <br/>
+                Something went wrong!
             </p>
         </div>
     </div>

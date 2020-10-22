@@ -14,7 +14,7 @@
 
     <servlet>
         <servlet-name>FrontServlet</servlet-name>
-        <servlet-class>by.epam.project.controller.ServletController</servlet-class>
+        <servlet-class>by.epam.project.controller.FrontController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>FrontServlet</servlet-name>
@@ -34,4 +34,13 @@
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+    <servlet>
+        <servlet-name>frontServlet</servlet-name>
+        <servlet-class>by.epam.project.controller.FrontController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>frontServlet</servlet-name>
+        <url-pattern>/DeluxeHotel</url-pattern>
+    </servlet-mapping>
 </web-app>

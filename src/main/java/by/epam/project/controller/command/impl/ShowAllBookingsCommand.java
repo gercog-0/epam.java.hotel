@@ -13,6 +13,9 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+/**
+ * The type Show all bookings command.
+ */
 public class ShowAllBookingsCommand implements Command {
     private BookingServiceImpl bookingService = BookingServiceImpl.getInstance();
 

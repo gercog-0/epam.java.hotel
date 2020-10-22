@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * The type Passing to users admin command.
+ */
 public class PassingToUsersAdminCommand implements Command {
     private UserServiceImpl userService = UserServiceImpl.getInstance();
 

@@ -19,6 +19,9 @@ import java.util.Map;
 
 import static by.epam.project.util.RequestParameterName.*;
 
+/**
+ * The type Add room command.
+ */
 public class AddRoomCommand implements Command {
     private RoomServiceImpl roomService = RoomServiceImpl.getInstance();
 

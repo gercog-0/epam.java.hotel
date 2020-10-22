@@ -1,6 +1,10 @@
 package by.epam.project.util;
 
 public class RequestParameterName {
+    /**
+     * These parameters are used for working with request.
+     * Also when validating data, as well as in utility classes.
+     */
     public static final String USER_ID = "userId";
     public static final String USER_LOGIN = "login";
     public static final String USER_PASSWORD = "password";

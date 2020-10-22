@@ -6,6 +6,9 @@ import by.epam.project.controller.command.PagePath;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * The type Passing to payment card command.
+ */
 public class PassingToPaymentCardCommand implements Command {
     @Override
     public Router execute(HttpServletRequest request) {

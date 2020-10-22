@@ -1,8 +1,8 @@
 package by.epam.project.model.dao;
 
 public class SqlQuery {
-    /*
-    sql_query_users
+    /**
+     *  QUERY TO TABLE WITH USERS
      */
     public static final String FIND_ALL_USERS = "SELECT userId, login, email, name, surname, balance, " +
             "phone, is_banned, is_activated, roleId FROM users WHERE roleId = ?";
@@ -23,8 +23,9 @@ public class SqlQuery {
     public static final String UPDATE_PASSWORD_BY_LOGIN = "UPDATE users SET password = ? WHERE login = ?";
     public static final String UPDATE_BALANCE_BY_LOGIN = "UPDATE users SET balance = ? WHERE login = ?";
 
-    /*
-    sql_query_rooms
+
+    /**
+     *  QUERY TO TABLE WITH ROOMS
      */
     public static final String ADD_ROOM = "INSERT into rooms (roomNumber,comfort,price,place_amount, is_active) " +
             "VALUES (?,?,?,?,?)";
@@ -47,8 +48,8 @@ public class SqlQuery {
             "arrival_date, departure_date, booking_status, userId_fk, roomId_fk FROM web_hotel.bookings WHERE booking_status != " +
             "'rejected' AND roomId = roomId_fk AND ((? BETWEEN arrival_date AND departure_date) OR (? BETWEEN arrival_date AND departure_date)))";
 
-    /*
-    sql_query_bookings
+    /**
+     *  QUERY TO TABLE WITH BOOKINGS
      */
     public static final String ADD_BOOKING = "INSERT INTO bookings (arrival_date, departure_date, booking_status, " +
             "userId_fk, roomId_fk, total_price) VALUES(?,?,?,?,?,?)";

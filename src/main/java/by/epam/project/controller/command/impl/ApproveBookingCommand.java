@@ -16,6 +16,9 @@ import java.util.Optional;
 
 import static by.epam.project.util.RequestParameterName.*;
 
+/**
+ * The type Approve booking command.
+ */
 public class ApproveBookingCommand implements Command {
     private BookingServiceImpl bookingService = BookingServiceImpl.getInstance();
 

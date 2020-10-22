@@ -38,7 +38,7 @@
             <div class="container">
                 <div class="add-rooms-form">
                     <h3 class="add-rooms-form__title"><fmt:message key="rooms_page.add_room"/></h3>
-                    <form action="controller" method="post" class="form">
+                    <form action="DeluxeHotel" method="post" class="form">
                         <div class="form-grid">
                             <div class="form__item">
                                 <div class="form-group">
@@ -116,9 +116,9 @@
                             <th>ACTIVE</th>
                             <th class="default-table__sort">
                                 <span><fmt:message key="rooms_page.sort_by"/>:</span>
-                                <a href="controller?command=sort_rooms&type_sort=price"><fmt:message
+                                <a href="DeluxeHotel?command=sort_rooms&type_sort=price"><fmt:message
                                         key="rooms_page.price_type_sort"/></a>
-                                <a href="controller?command=sort_rooms&type_sort=place_amount"><fmt:message
+                                <a href="DeluxeHotel?command=sort_rooms&type_sort=place_amount"><fmt:message
                                         key="rooms_page.places_type_sort"/></a>
                             </th>
                         </tr>
@@ -132,14 +132,14 @@
                                 <c:choose>
                                     <c:when test="${room.isActive() == true}">
                                         <td class="default-table__action">
-                                            <a href="controller?command=disable_room&roomNumber=${room.getNumber()}"
+                                            <a href="DeluxeHotel?command=disable_room&roomNumber=${room.getNumber()}"
                                                class="default-table__button default-table__button--red"><fmt:message
                                                     key="rooms_page.disable_button"/></a>
                                         </td>
                                     </c:when>
                                     <c:otherwise>
                                         <td class="default-table__action">
-                                            <a href="controller?command=activate_room&roomNumber=${room.getNumber()}"
+                                            <a href="DeluxeHotel?command=activate_room&roomNumber=${room.getNumber()}"
                                                class="default-table__button default-table__button--green"><fmt:message
                                                     key="rooms_page.activate_button"/></a>
                                         </td>

@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import static by.epam.project.util.RequestParameterName.USER_LOGIN;
 
+/**
+ * The type Ban user command.
+ */
 public class BanUserCommand implements Command {
     private UserServiceImpl userService = UserServiceImpl.getInstance();
 

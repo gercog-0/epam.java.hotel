@@ -15,6 +15,9 @@ import java.util.Optional;
 
 import static by.epam.project.util.RequestParameterName.BOOKING_ID;
 
+/**
+ * The type Rejected booking command.
+ */
 public class RejectedBookingCommand implements Command {
     private BookingServiceImpl bookingService = BookingServiceImpl.getInstance();
 

@@ -26,7 +26,7 @@
 <div class="login-page">
     <c:import url="${pageContext.request.contextPath}/jsp/header.jsp"/>
     <div class="form">
-        <form action="controller" method="post" class="login-form">
+        <form action="DeluxeHotel" method="post" class="login-form">
             <input type="text" name="name" placeholder=
             <fmt:message key="sign_up_page.name"/> required pattern="^[a-zA-Z]{2,25}$"
                    oninvalid="this.setCustomValidity('<fmt:message key="sign_up_page.invalid_name"/>')"
@@ -73,7 +73,7 @@
             <input type="hidden" name="command" value="sign_up"/>
             <button><span><fmt:message key="sign_up_page.sign_up"/></span></button>
             <p class="message"><fmt:message key="sign_up_page.have_account"/>
-                <a href="controller?command=passing_sign_in"> <fmt:message key="sign_in_page.sign_in"/></a></p>
+                <a href="DeluxeHotel?command=passing_sign_in"> <fmt:message key="sign_in_page.sign_in"/></a></p>
         </form>
     </div>
 </div>

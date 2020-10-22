@@ -7,11 +7,14 @@ import java.util.regex.Pattern;
 
 import static by.epam.project.util.RequestParameterName.*;
 
+/**
+ * The type Payment card validator.
+ */
 public class PaymentCardValidator {
     private static final String NUMBER_CARD_REGEX = "^[\\d]{4}\\s[\\d]{4}\\s[\\d]{4}\\s[\\d]{4}$";
     private static final String DATE_CARD_REGEX = "^\\d{2}\\/\\d{2}$";
     private static final String CV_CARD_CODE_REGEX = "^[\\d]{3}$";
-    private static final String TRANSFER_AMOUNT_REGEX = "^\\d+\\.?\\d+$";
+    private static final String TRANSFER_AMOUNT_REGEX = "^\\d+\\.?\\d{1,2}$";
     private static final String DATE_REGEX_DELIMITER = "/";
     private static final String EMPTY_STRING = "";
     private static final double MIN_TRANSFER_AMOUNT = 100;
@@ -20,6 +23,15 @@ public class PaymentCardValidator {
     private PaymentCardValidator() {
     }
 
+    /**
+     * Validate parameters map.
+     *
+     * @param number         the number
+     * @param date           the date
+     * @param cvCode         the cv code
+     * @param transferAmount the transfer amount
+     * @return the map
+     */
     public static Map<String, String> validateParameters(String number, String date, String cvCode, String transferAmount) {
         Map<String, String> validateData = new HashMap<>();
         validateData.put(NUMBER_CARD, isNumberCardCorrect(number) ? number : EMPTY_STRING);
@@ -60,6 +72,12 @@ public class PaymentCardValidator {
         return false;
     }
 
+    /**
+     * Define incorrect values boolean.
+     *
+     * @param data the data
+     * @return the boolean
+     */
     public static boolean defineIncorrectValues(Map<String, String> data) {
         for (String key : data.keySet()) {
             if (data.get(key).isEmpty()) {

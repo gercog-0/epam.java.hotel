@@ -46,12 +46,12 @@
                         </div>
                         <c:choose>
                             <c:when test="${empty user}">
-                                <a href="controller?command=passing_sign_in" class="hotel-info__button"><fmt:message
+                                <a href="DeluxeHotel?command=passing_sign_in" class="hotel-info__button"><fmt:message
                                         key="main_page.business_card_button"/></a>
                             </c:when>
                             <c:when test="${not empty user}">
                                 <c:if test="${userRole != 'ADMINISTRATOR'}">
-                                    <a href="controller?command=passing_filter_rooms"
+                                    <a href="DeluxeHotel?command=passing_filter_rooms"
                                        class="hotel-info__button"><fmt:message
                                             key="main_page.business_card_button"/></a>
                                 </c:if>

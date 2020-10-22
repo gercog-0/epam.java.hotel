@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import static by.epam.project.util.RequestParameterName.ROOM_NUMBER;
 
+/**
+ * The type Disable room command.
+ */
 public class DisableRoomCommand implements Command {
     private RoomServiceImpl roomService = RoomServiceImpl.getInstance();
 

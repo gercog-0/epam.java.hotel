@@ -3,11 +3,29 @@ package by.epam.project.model.entity;
 import java.util.Arrays;
 import java.util.Optional;
 
+/**
+ * The type Room.
+ */
 public class Room extends Entity {
+    /**
+     * The enum Comfort.
+     */
     public enum Comfort {
+        /**
+         * Economy comfort.
+         */
         ECONOMY("economy"),
+        /**
+         * Standard comfort.
+         */
         STANDARD("standard"),
+        /**
+         * Luxury comfort.
+         */
         LUXURY("luxury"),
+        /**
+         * Apartments comfort.
+         */
         APARTMENTS("apartments");
 
         private final String name;
@@ -16,10 +34,21 @@ public class Room extends Entity {
             this.name = name;
         }
 
+        /**
+         * Gets name.
+         *
+         * @return the name
+         */
         public String getName() {
             return name;
         }
 
+        /**
+         * Gets comfort type by value.
+         *
+         * @param value the value
+         * @return the comfort type by value
+         */
         public static Optional<Comfort> getComfortTypeByValue(String value) {
             return Arrays.stream(Comfort.values()).
                     filter(o -> o.getName().equals(value)).findAny();
@@ -33,6 +62,16 @@ public class Room extends Entity {
     private boolean isActive;
     private int placeAmount;
 
+    /**
+     * Instantiates a new Room.
+     *
+     * @param roomId      the room id
+     * @param number      the number
+     * @param comfort     the comfort
+     * @param price       the price
+     * @param isActive    the is active
+     * @param placeAmount the place amount
+     */
     public Room(int roomId, int number, Comfort comfort, double price, boolean isActive, int placeAmount) {
         this.roomId = roomId;
         this.number = number;
@@ -42,6 +81,15 @@ public class Room extends Entity {
         this.placeAmount = placeAmount;
     }
 
+    /**
+     * Instantiates a new Room.
+     *
+     * @param number      the number
+     * @param comfort     the comfort
+     * @param price       the price
+     * @param isActive    the is active
+     * @param placeAmount the place amount
+     */
     public Room(int number, Comfort comfort, double price, boolean isActive, int placeAmount) {
         this.number = number;
         this.comfort = comfort;
@@ -50,50 +98,110 @@ public class Room extends Entity {
         this.placeAmount = placeAmount;
     }
 
+    /**
+     * Gets room id.
+     *
+     * @return the room id
+     */
     public int getRoomId() {
         return roomId;
     }
 
+    /**
+     * Sets room id.
+     *
+     * @param roomId the room id
+     */
     public void setRoomId(int roomId) {
         this.roomId = roomId;
     }
 
+    /**
+     * Gets number.
+     *
+     * @return the number
+     */
     public int getNumber() {
         return number;
     }
 
+    /**
+     * Sets number.
+     *
+     * @param number the number
+     */
     public void setNumber(int number) {
         this.number = number;
     }
 
+    /**
+     * Gets comfort.
+     *
+     * @return the comfort
+     */
     public Comfort getComfort() {
         return comfort;
     }
 
+    /**
+     * Sets comfort.
+     *
+     * @param comfort the comfort
+     */
     public void setComfort(Comfort comfort) {
         this.comfort = comfort;
     }
 
+    /**
+     * Gets price.
+     *
+     * @return the price
+     */
     public double getPrice() {
         return price;
     }
 
+    /**
+     * Sets price.
+     *
+     * @param price the price
+     */
     public void setPrice(double price) {
         this.price = price;
     }
 
+    /**
+     * Is active boolean.
+     *
+     * @return the boolean
+     */
     public boolean isActive() {
         return isActive;
     }
 
+    /**
+     * Sets active.
+     *
+     * @param active the active
+     */
     public void setActive(boolean active) {
         isActive = active;
     }
 
+    /**
+     * Gets place amount.
+     *
+     * @return the place amount
+     */
     public int getPlaceAmount() {
         return placeAmount;
     }
 
+    /**
+     * Sets place amount.
+     *
+     * @param placeAmount the place amount
+     */
     public void setPlaceAmount(int placeAmount) {
         this.placeAmount = placeAmount;
     }

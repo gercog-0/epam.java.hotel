@@ -15,7 +15,13 @@ import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 
+/**
+ * The enum Connection pool.
+ */
 public enum ConnectionPool {
+    /**
+     * Instance connection pool.
+     */
     INSTANCE;
 
     private final String DATABASE_PROPERTIES = "database.properties";
@@ -34,6 +40,11 @@ public enum ConnectionPool {
         initializePool();
     }
 
+    /**
+     * Gets connection.
+     *
+     * @return the connection
+     */
     public ProxyConnection getConnection() {
         ProxyConnection proxyConnection = null;
         try {
@@ -45,6 +56,11 @@ public enum ConnectionPool {
         return proxyConnection;
     }
 
+    /**
+     * Release connection.
+     *
+     * @param connection the connection
+     */
     public void releaseConnection(Connection connection) {
         if (connection.getClass() == ProxyConnection.class
                 && busyConnections.remove(connection)) {
@@ -54,6 +70,9 @@ public enum ConnectionPool {
         }
     }
 
+    /**
+     * Destroy pool.
+     */
     public void destroyPool() {
         for (int i = 0; i < DEFAULT_POOL_SIZE; i++) {
             try {
