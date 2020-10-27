@@ -3,6 +3,9 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
     <error-page>
         <error-code>404</error-code>
         <location>/jsp/error404.jsp</location>
@@ -12,15 +15,6 @@
         <location>/jsp/error500.jsp</location>
     </error-page>
 
-    <servlet>
-        <servlet-name>FrontServlet</servlet-name>
-        <servlet-class>by.epam.project.controller.FrontController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>FrontServlet</servlet-name>
-        <url-pattern>/HotelDeluxe</url-pattern>
-    </servlet-mapping>
-
     <filter>
         <filter-name>encodingFilter</filter-name>
         <filter-class>by.epam.project.controller.filter.EncodingFilter</filter-class>
@@ -29,6 +23,16 @@
             <param-value>UTF-8</param-value>
         </init-param>
     </filter>
+
+    <filter>
+        <filter-name>CommandSecurityFilter</filter-name>
+        <filter-class>by.epam.project.controller.filter.CommandSecurityFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>CommandSecurityFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
     <filter-mapping>
         <filter-name>encodingFilter</filter-name>

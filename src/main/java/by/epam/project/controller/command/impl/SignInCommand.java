@@ -44,7 +44,7 @@ public class SignInCommand implements Command {
                 } else {
                     session.setAttribute(MessageAttribute.USER, user);
                     session.setAttribute(MessageAttribute.USER_ROLE, user.getRole());
-                    String redirectURL = createRedirectURL(request, CommandType.PASSING_HOME.toString().toLowerCase());
+                    String redirectURL = createRedirectURL(request, CommandName.PASSING_HOME.toString().toLowerCase());
                     router.setRedirect();
                     router.setCurrentPage(redirectURL);
                 }

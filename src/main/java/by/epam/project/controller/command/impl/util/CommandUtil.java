@@ -10,7 +10,6 @@ public class CommandUtil {
     private CommandUtil() {
     }
 
-    private static final String REFERER = "referer";
     private static final String RESOURCES_LANGUAGE = "pagecontent.language";
     private static final String ENGLISH_LANGUAGE = "en";
     private static final Locale DEFAULT_LANGUAGE = new Locale(ENGLISH_LANGUAGE);

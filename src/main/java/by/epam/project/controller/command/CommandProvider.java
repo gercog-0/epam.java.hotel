@@ -1,7 +1,6 @@
 package by.epam.project.controller.command;
 
-import by.epam.project.controller.command.Command;
-import by.epam.project.controller.command.CommandType;
+
 import by.epam.project.controller.command.impl.EmptyCommand;
 
 public class CommandProvider {
@@ -15,7 +14,7 @@ public class CommandProvider {
             return new EmptyCommand();
         }
         try {
-            currentCommand = CommandType.valueOf(command.toUpperCase()).getCommand();
+            currentCommand = CommandName.valueOf(command.toUpperCase()).getCommand();
         } catch (IllegalArgumentException exp) {
             currentCommand = new EmptyCommand();
         }

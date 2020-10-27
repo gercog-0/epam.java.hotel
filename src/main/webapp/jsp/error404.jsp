@@ -28,7 +28,7 @@
             <h3 class="notification__title">ERROR 404</h3>
             <p class="notification__text">
                 Request is failed! <br/>
-                Something went wrong!
+                The page you requested was not found, and it may have been deleted, renamed, or unavailable.
             </p>
         </div>
     </div>

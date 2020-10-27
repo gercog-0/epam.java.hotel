@@ -18,7 +18,11 @@ public class User extends Account {
         /**
          * Administrator role.
          */
-        ADMINISTRATOR(1);
+        ADMINISTRATOR(1),
+        /**
+         * Guest role.
+         */
+        GUEST(2);
 
         private final int roleId;
 
