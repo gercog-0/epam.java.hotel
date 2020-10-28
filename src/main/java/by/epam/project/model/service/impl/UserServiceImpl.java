@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
             }
             return foundUser;
         } catch (DaoException exp) {
-            throw new ServiceException(exp);
+            throw new ServiceException("Error during sign in user", exp);
         }
     }
 
@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
         try {
             isSignedUp = userDao.add(user);
         } catch (DaoException exp) {
-            throw new ServiceException(exp);
+            throw new ServiceException("Error during sign up user", exp);
         }
         return isSignedUp;
     }
@@ -72,7 +72,7 @@ public class UserServiceImpl implements UserService {
             signUpData.put(EMAIL_UNIQUE, userDao.findByEmail(email).isEmpty() ? email : NOT_UNIQUE);
             signUpData.put(PHONE_UNIQUE, userDao.findByPhone(phone).isEmpty() ? phone : NOT_UNIQUE);
         } catch (DaoException exp) {
-            throw new ServiceException(exp);
+            throw new ServiceException("Error during define sign up data", exp);
         }
         return signUpData;
     }
@@ -85,7 +85,7 @@ public class UserServiceImpl implements UserService {
         try {
             userList = userDao.findAll();
         } catch (DaoException exp) {
-            throw new ServiceException(exp);
+            throw new ServiceException("Error during find all users", exp);
         }
         return userList;
     }
@@ -97,7 +97,7 @@ public class UserServiceImpl implements UserService {
             List<User> sortedList = users.stream().sorted(currentComparator).collect(Collectors.toList());
             return sortedList;
         } catch (IllegalArgumentException exp) {
-            throw new ServiceException("Unknown type of comparator.");
+            throw new ServiceException("Unknown type of comparator", exp);
         }
     }
 
@@ -107,7 +107,7 @@ public class UserServiceImpl implements UserService {
         try {
             return userDao.findById(id);
         } catch (DaoException exp) {
-            throw new ServiceException(exp);
+            throw new ServiceException("Error during find user by id", exp);
         }
     }
 
@@ -117,7 +117,7 @@ public class UserServiceImpl implements UserService {
         try {
             return userDao.findByPhone(phone);
         } catch (DaoException exp) {
-            throw new ServiceException(exp);
+            throw new ServiceException("Error during find user by phone", exp);
         }
     }
 
@@ -127,7 +127,7 @@ public class UserServiceImpl implements UserService {
         try {
             return userDao.findByEmail(email);
         } catch (DaoException exp) {
-            throw new ServiceException(exp);
+            throw new ServiceException("Error during find user by email", exp);
         }
     }
 
@@ -137,7 +137,7 @@ public class UserServiceImpl implements UserService {
         try {
             return userDao.findByLogin(login);
         } catch (DaoException exp) {
-            throw new ServiceException(exp);
+            throw new ServiceException("Error during find user by login", exp);
         }
     }
 
@@ -153,7 +153,7 @@ public class UserServiceImpl implements UserService {
                 isPayment = true;
             }
         } catch (DaoException exp) {
-            throw new ServiceException(exp);
+            throw new ServiceException("Error during payment booking", exp);
         }
         return isPayment;
     }
@@ -172,7 +172,7 @@ public class UserServiceImpl implements UserService {
                 isMadeDeposit = true;
             }
         } catch (DaoException exp) {
-            throw new ServiceException(exp);
+            throw new ServiceException("Error during deposit money", exp);
         }
         return isMadeDeposit;
     }
@@ -188,7 +188,7 @@ public class UserServiceImpl implements UserService {
             String encryptPassword = EncryptPassword.encryption(password);
             isUpdate = userDao.updatePasswordByLogin(login, encryptPassword);
         } catch (DaoException exp) {
-            throw new ServiceException(exp);
+            throw new ServiceException("Error during update password by login", exp);
         }
         return isUpdate;
     }
@@ -199,7 +199,7 @@ public class UserServiceImpl implements UserService {
         try {
             return userDao.ban(login);
         } catch (DaoException exp) {
-            throw new ServiceException(exp);
+            throw new ServiceException("Error during ban user", exp);
         }
     }
 
@@ -209,7 +209,7 @@ public class UserServiceImpl implements UserService {
         try {
             return userDao.unBan(login);
         } catch (DaoException exp) {
-            throw new ServiceException(exp);
+            throw new ServiceException("Error during un ban user", exp);
         }
     }
 
@@ -219,7 +219,7 @@ public class UserServiceImpl implements UserService {
         try {
             return userDao.activateUser(login);
         } catch (DaoException exp) {
-            throw new ServiceException(exp);
+            throw new ServiceException("Error during activate user", exp);
         }
     }
 }

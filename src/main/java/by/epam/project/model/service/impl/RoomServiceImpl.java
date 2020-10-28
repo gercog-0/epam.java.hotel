@@ -39,7 +39,7 @@ public class RoomServiceImpl implements RoomService {
             int number = Integer.parseInt(roomNumber);
             return roomDao.findByNumber(number);
         } catch (DaoException exp) {
-            throw new ServiceException();
+            throw new ServiceException("Error while find room by number", exp);
         }
     }
 
@@ -54,7 +54,7 @@ public class RoomServiceImpl implements RoomService {
                 roomData.put(ROOM_NUMBER_UNIQUE, roomDao.findByNumber(number).isEmpty() ? roomNumber : NOT_UNIQUE);
             }
         } catch (DaoException exp) {
-            throw new ServiceException(exp);
+            throw new ServiceException("Error while define room data", exp);
         }
         return roomData;
     }
@@ -66,7 +66,7 @@ public class RoomServiceImpl implements RoomService {
             List<Room> sortedList = freeRooms.stream().sorted(currentComparator).collect(Collectors.toList());
             return sortedList;
         } catch (IllegalArgumentException exp) {
-            throw new ServiceException("Unknown type of comparator.");
+            throw new ServiceException("Unknown type of comparator", exp);
         }
     }
 
@@ -84,7 +84,7 @@ public class RoomServiceImpl implements RoomService {
 
             foundRooms = roomDao.findFree(comfort.toLowerCase(), places, dateFrom, dateTo);
         } catch (DaoException exp) {
-            throw new ServiceException(exp);
+            throw new ServiceException("Error during find free rooms by parameters", exp);
         }
         return foundRooms;
     }
@@ -97,7 +97,7 @@ public class RoomServiceImpl implements RoomService {
         try {
             roomsList = roomDao.findAll();
         } catch (DaoException exp) {
-            throw new ServiceException(exp);
+            throw new ServiceException("Error during find all rooms", exp);
         }
         return roomsList;
     }
@@ -109,7 +109,7 @@ public class RoomServiceImpl implements RoomService {
         try {
             isRoomAdded = roomDao.add(room);
         } catch (DaoException exp) {
-            throw new ServiceException(exp);
+            throw new ServiceException("Error during add room", exp);
         }
         return isRoomAdded;
     }
@@ -121,7 +121,7 @@ public class RoomServiceImpl implements RoomService {
             int roomNumber = Integer.parseInt(number);
             return roomDao.activateRoom(roomNumber);
         } catch (DaoException exp) {
-            throw new ServiceException(exp);
+            throw new ServiceException("Error during activate room", exp);
         }
     }
 
@@ -132,7 +132,7 @@ public class RoomServiceImpl implements RoomService {
             int roomNumber = Integer.parseInt(number);
             return roomDao.inactiveRoom(roomNumber);
         } catch (DaoException exp) {
-            throw new ServiceException(exp);
+            throw new ServiceException("Error during inactivate room", exp);
         }
     }
 }

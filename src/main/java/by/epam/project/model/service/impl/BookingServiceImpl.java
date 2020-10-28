@@ -44,7 +44,7 @@ public class BookingServiceImpl implements BookingService {
                 isMade = bookingDao.add(booking);
             }
         } catch (DaoException exp) {
-            throw new ServiceException(exp);
+            throw new ServiceException("Error during make booking", exp);
         }
         return isMade;
     }
@@ -56,7 +56,7 @@ public class BookingServiceImpl implements BookingService {
         try {
             bookings = bookingDao.findAllByIdUser(id);
         } catch (DaoException exp) {
-            throw new ServiceException(exp);
+            throw new ServiceException("Error during find user`s booking", exp);
         }
         return bookings;
     }
@@ -68,7 +68,7 @@ public class BookingServiceImpl implements BookingService {
         try {
             bookings = bookingDao.findByStatus(status);
         } catch (DaoException exp) {
-            throw new ServiceException(exp);
+            throw new ServiceException("Error during find booking by status", exp);
         }
         return bookings;
     }
@@ -80,7 +80,7 @@ public class BookingServiceImpl implements BookingService {
         try {
             bookings = bookingDao.findAll();
         } catch (DaoException exp) {
-            throw new ServiceException(exp);
+            throw new ServiceException("Error while during find all bookings", exp);
         }
         return bookings;
     }
@@ -92,7 +92,7 @@ public class BookingServiceImpl implements BookingService {
             List<Booking> sortedList = bookings.stream().sorted(currentComparator).collect(Collectors.toList());
             return sortedList;
         } catch (IllegalArgumentException exp) {
-            throw new ServiceException("Unknown type of comparator.");
+            throw new ServiceException("Unknown type of comparator", exp);
         }
     }
 
@@ -104,7 +104,7 @@ public class BookingServiceImpl implements BookingService {
             int bookingId = Integer.parseInt(id);
             foundBooking = bookingDao.findById(bookingId);
         } catch (DaoException exp) {
-            throw new ServiceException(exp);
+            throw new ServiceException("Error during find booking by status", exp);
         }
         return foundBooking;
     }
@@ -119,7 +119,7 @@ public class BookingServiceImpl implements BookingService {
                 return bookingDao.updateStatusById(bookingId, status);
             }
         } catch (DaoException exp) {
-            throw new ServiceException(exp);
+            throw new ServiceException("Error during update booking status", exp);
         }
         return false;
     }
