@@ -93,7 +93,6 @@ public enum ConnectionPool {
             String sqlUrl = properties.getProperty(DATABASE_URL);
             String sqlDriver = properties.getProperty(DATABASE_DRIVER);
             Class.forName(sqlDriver);
-
             for (int i = 0; i < DEFAULT_POOL_SIZE; i++) {
                 freeConnections.add(new ProxyConnection(DriverManager.getConnection(sqlUrl, properties)));
             }
