@@ -1,7 +1,5 @@
 package by.epam.project.util.comparator;
 
-
-
 import by.epam.project.model.entity.Booking;
 
 import java.util.Comparator;

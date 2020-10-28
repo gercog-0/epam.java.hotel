@@ -34,7 +34,7 @@ public class RequestParameterName {
     public static final String BOOKING_STATUS = "booking_status";
     public static final String BOOKING_USER_ID_FK = "userId_fk";
     public static final String BOOKING_ROOM_ID_FK = "roomId_fk";
-    public static final String BOOKING_TOTAL_PRICE= "total_price";
+    public static final String BOOKING_TOTAL_PRICE = "total_price";
     public static final String BOOKING_TYPE_SORT = "sortType";
 
     public static final String LOGIN_UNIQUE = "loginUnique";

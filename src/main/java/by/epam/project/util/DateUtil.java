@@ -3,8 +3,6 @@ package by.epam.project.util;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Optional;
 
@@ -54,7 +52,7 @@ public class DateUtil {
      * @param date the date
      * @return the string
      */
-    public static String parseDateToStringFormat(Date date){
+    public static String parseDateToStringFormat(Date date) {
         String stringFormat = DATE_FORMAT.format(date);
         return stringFormat;
     }
