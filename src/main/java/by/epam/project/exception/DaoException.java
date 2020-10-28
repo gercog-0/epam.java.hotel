@@ -1,7 +1,7 @@
 package by.epam.project.exception;
 
 /**
- * The type Dao exception.
+ * Dao exception.
  */
 public class DaoException extends Exception {
     /**

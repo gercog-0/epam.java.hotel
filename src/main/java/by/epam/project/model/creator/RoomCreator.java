@@ -3,7 +3,7 @@ package by.epam.project.model.creator;
 import by.epam.project.model.entity.Room;
 
 /**
- * The type Room creator.
+ * Room creator.
  */
 public class RoomCreator {
     private static RoomCreator instance = new RoomCreator();
@@ -22,7 +22,7 @@ public class RoomCreator {
     }
 
     /**
-     * Create room room.
+     * Create room.
      *
      * @param roomId          the room id
      * @param roomNumber      the room number
@@ -39,7 +39,7 @@ public class RoomCreator {
     }
 
     /**
-     * Create room room.
+     * Create room.
      *
      * @param roomNumberString  the room number string
      * @param roomComfortString the room comfort string

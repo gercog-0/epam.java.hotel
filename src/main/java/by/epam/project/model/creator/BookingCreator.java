@@ -7,7 +7,7 @@ import by.epam.project.model.entity.User;
 import java.util.Date;
 
 /**
- * The type Booking creator.
+ * Booking creator.
  */
 public class BookingCreator {
     /**
@@ -28,7 +28,7 @@ public class BookingCreator {
     }
 
     /**
-     * Create booking booking.
+     * Create booking.
      *
      * @param bookingId     the booking id
      * @param user          the user
@@ -46,7 +46,7 @@ public class BookingCreator {
     }
 
     /**
-     * Create booking booking.
+     * Create booking.
      *
      * @param user          the user
      * @param room          the room

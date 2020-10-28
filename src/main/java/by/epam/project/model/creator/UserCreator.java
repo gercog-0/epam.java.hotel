@@ -3,7 +3,7 @@ package by.epam.project.model.creator;
 import by.epam.project.model.entity.User;
 
 /**
- * The type User creator.
+ * User creator.
  */
 public class UserCreator {
     /**
@@ -24,7 +24,7 @@ public class UserCreator {
     }
 
     /**
-     * Create user user.
+     * Create user.
      *
      * @param userId          the user id
      * @param userLogin       the user login
@@ -41,14 +41,13 @@ public class UserCreator {
     public User createUser(int userId, String userLogin, String userEmail, String userName,
                            String userSurname, String userPhone, double userBalance,
                            boolean userIsBanned, boolean userIsActivated, int userRoleId) {
-
         User createdUser = new User(userId, userLogin, userEmail, userName, userSurname,
                 userPhone, userBalance, userIsBanned, userIsActivated, userRoleId);
         return createdUser;
     }
 
     /**
-     * Create user user.
+     * Create user.
      *
      * @param userLogin   the user login
      * @param userEmail   the user email
@@ -60,7 +59,6 @@ public class UserCreator {
      */
     public User createUser(String userLogin, String userEmail, String userName,
                            String userSurname, String userPhone, int userRoleId) {
-
         User createdUser = new User(userLogin, userEmail, userName, userSurname, userPhone, userRoleId);
         return createdUser;
     }

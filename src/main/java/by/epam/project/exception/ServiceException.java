@@ -1,7 +1,7 @@
 package by.epam.project.exception;
 
 /**
- * The type Service exception.
+ * Service exception.
  */
 public class ServiceException extends Exception {
     /**
