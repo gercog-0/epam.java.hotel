@@ -7,6 +7,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="ctg" uri="customTags" %>
 
 <c:choose>
     <c:when test="${not empty language}"> <fmt:setLocale value="${language}"/></c:when>
@@ -140,10 +141,7 @@
                     <c:if test="${not empty quantityPages}">
                         <div class="rooms__footer">
                             <div class="pagination">
-                                <c:forEach var="pageNumber" begin="1" step="1" end="${quantityPages}">
-                                    <a href="DeluxeHotel?command=filter_rooms&listPage=${pageNumber}"
-                                       class="pagination__link">${pageNumber}</a>
-                                </c:forEach>
+                                <ctg:roomsPagination quantityPages="${quantityPages}" pageNumber="${pageNumber}"/>
                             </div>
                         </div>
                     </c:if>
