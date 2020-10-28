@@ -43,7 +43,7 @@ public class UserDaoImpl implements UserDao {
 
             update = statement.executeUpdate() > 0;
         } catch (SQLException exp) {
-            throw new DaoException("The user is not attached...", exp);
+            throw new DaoException(exp);
         }
         return update;
     }
@@ -199,7 +199,7 @@ public class UserDaoImpl implements UserDao {
             statement.setString(2, login);
             isUpdate = statement.executeUpdate() > 0;
         } catch (SQLException exp) {
-            throw new DaoException("Error while password update", exp);
+            throw new DaoException(exp);
         }
         return isUpdate;
     }
@@ -213,7 +213,7 @@ public class UserDaoImpl implements UserDao {
             statement.setString(2, login);
             isUpdate = statement.executeUpdate() > 0;
         } catch (SQLException exp) {
-            throw new DaoException("Error while password update", exp);
+            throw new DaoException(exp);
         }
         return isUpdate;
     }

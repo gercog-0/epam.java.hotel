@@ -25,7 +25,6 @@ public class BookingDaoImpl implements BookingDao {
         return instance;
     }
 
-
     @Override
     public boolean add(Booking booking) throws DaoException {
         boolean update;
@@ -44,7 +43,6 @@ public class BookingDaoImpl implements BookingDao {
         }
         return update;
     }
-
 
     @Override
     public Optional<Booking> findById(int id) throws DaoException {
@@ -93,7 +91,6 @@ public class BookingDaoImpl implements BookingDao {
         return bookings;
     }
 
-
     @Override
     public List<Booking> findAll() throws DaoException {
         List<Booking> bookings = new ArrayList<>();
@@ -109,7 +106,6 @@ public class BookingDaoImpl implements BookingDao {
         }
         return bookings;
     }
-
 
     @Override
     public List<Booking> findByStatus(String status) throws DaoException {

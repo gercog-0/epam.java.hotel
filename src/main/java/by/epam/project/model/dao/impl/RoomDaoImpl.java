@@ -11,7 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,7 +58,6 @@ public class RoomDaoImpl implements RoomDao {
             throw new DaoException(exp);
         }
         return freeRooms;
-
     }
 
     @Override
