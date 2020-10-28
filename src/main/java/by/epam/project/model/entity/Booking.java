@@ -174,7 +174,7 @@ public class Booking extends Entity {
      *
      * @return the string
      */
-    public String getArrivalDateString(){
+    public String getArrivalDateString() {
         String dateString = DateUtil.parseDateToStringFormat(this.arrivalDate);
         return dateString;
     }
@@ -202,7 +202,7 @@ public class Booking extends Entity {
      *
      * @return the string
      */
-    public String getDepartureDateString(){
+    public String getDepartureDateString() {
         String dateString = DateUtil.parseDateToStringFormat(this.departureDate);
         return dateString;
     }
