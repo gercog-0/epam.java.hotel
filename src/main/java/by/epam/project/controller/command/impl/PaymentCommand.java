@@ -52,8 +52,7 @@ public class PaymentCommand implements Command {
                     router = new Router(PagePath.USER_PROFILE);
                 }
             } else {
-                //request.setAttribute();
-                router = new Router(PagePath.NOTIFICATION);
+                router = new Router(PagePath.ERROR_404);
             }
         } catch (ServiceException exp) {
             LOGGER.error(exp);

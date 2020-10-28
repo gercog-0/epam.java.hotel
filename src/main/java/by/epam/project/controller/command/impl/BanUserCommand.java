@@ -5,12 +5,15 @@ import by.epam.project.controller.command.Command;
 import by.epam.project.controller.command.MessageAttribute;
 import by.epam.project.controller.command.PagePath;
 import by.epam.project.exception.ServiceException;
+import by.epam.project.model.entity.User;
 import by.epam.project.model.service.UserService;
 import by.epam.project.model.service.impl.UserServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+
+import java.util.Optional;
 
 import static by.epam.project.util.RequestParameterName.USER_LOGIN;
 
@@ -27,12 +30,17 @@ public class BanUserCommand implements Command {
         Router router;
         String loginUser = request.getParameter(USER_LOGIN);
         try {
-            userService.banUser(loginUser);
-            request.setAttribute(MessageAttribute.BAN_LOGIN_USER, loginUser);
-            router = new Router(PagePath.NOTIFICATION);
-        } catch (ServiceException exp){
+            Optional<User> foundUser = userService.findUserByLogin(loginUser);
+            if (foundUser.isPresent()) {
+                userService.banUser(loginUser);
+                request.setAttribute(MessageAttribute.BAN_LOGIN_USER, loginUser);
+                router = new Router(PagePath.NOTIFICATION);
+            } else {
+                router = new Router(PagePath.ERROR_404);
+            }
+        } catch (ServiceException exp) {
             LOGGER.error(exp);
-            router =  new Router(PagePath.ERROR_500);
+            router = new Router(PagePath.ERROR_500);
         }
         return router;
     }

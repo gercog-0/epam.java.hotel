@@ -43,7 +43,6 @@ public class UserValidator {
         validatedData.put(USER_NAME, isNameCorrect(name) ? name : EMPTY_STRING);
         validatedData.put(USER_SURNAME, isSurnameCorrect(surname) ? surname : EMPTY_STRING);
         validatedData.put(USER_PHONE, isPhoneCorrect(phone) ? phone : EMPTY_STRING);
-
         return validatedData;
     }
 

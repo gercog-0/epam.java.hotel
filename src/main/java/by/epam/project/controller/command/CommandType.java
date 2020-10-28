@@ -26,7 +26,8 @@ public enum CommandType {
             PASSING_USER_PROFILE,
             BOOKING,
             FILTER_ROOMS,
-            SORT_ROOMS
+            SORT_ROOMS,
+            SORT_BOOKINGS
     )),
     ADMINISTRATOR(EnumSet.of(
             PASSING_HOME,

@@ -70,7 +70,8 @@
                                 <div class="form-group">
                                     <span class="form-label"><fmt:message key="booking.comfort_type"/></span>
                                     <select class="form-control" required name="comfort">
-                                        <option value="ECONOMY" selected hidden><fmt:message key="booking.economy_type"/></option>
+                                        <option value="ECONOMY" selected hidden><fmt:message
+                                                key="booking.economy_type"/></option>
                                         <option value="STANDARD"><fmt:message key="booking.standard_type"/></option>
                                         <option value="LUXURY"><fmt:message key="booking.luxury_type"/></option>
                                         <option value="APARTMENTS"><fmt:message key="booking.apartments_type"/></option>
@@ -90,13 +91,13 @@
                     <div class="rooms__header">
                         <h2><fmt:message key="booking.available_rooms"/></h2>
                         <c:if test="${not empty rooms}">
-                        <div class="rooms__sort">
-                            <span class="rooms__label"><fmt:message key="booking.sort_by"/></span>
-                            <a href="DeluxeHotel?command=sort_rooms&type_sort=price"
-                               class="rooms__sort-link"><fmt:message key="booking.price"/></a>
-                            <a href="DeluxeHotel?command=sort_rooms&type_sort=place_amount"
-                               class="rooms__sort-link"><fmt:message key="booking.places"/></a>
-                        </div>
+                            <div class="rooms__sort">
+                                <span class="rooms__label"><fmt:message key="booking.sort_by"/></span>
+                                <a href="DeluxeHotel?command=sort_rooms&type_sort=price"
+                                   class="rooms__sort-link"><fmt:message key="booking.price"/></a>
+                                <a href="DeluxeHotel?command=sort_rooms&type_sort=place_amount"
+                                   class="rooms__sort-link"><fmt:message key="booking.places"/></a>
+                            </div>
                         </c:if>
                     </div>
                     <table class="rooms-table">
@@ -119,7 +120,7 @@
                                     <th><fmt:message key="booking.price"/></th>
                                     <th></th>
                                 </tr>
-                                <c:forEach var="room" items="${rooms}">
+                                <c:forEach var="room" items="${paginationRooms}">
                                     <tr>
                                         <td>${room.getNumber()}</td>
                                         <td>${room.getComfort()}</td>
@@ -136,6 +137,16 @@
                             </c:when>
                         </c:choose>
                     </table>
+                    <c:if test="${not empty quantityPages}">
+                        <div class="rooms__footer">
+                            <div class="pagination">
+                                <c:forEach var="pageNumber" begin="1" step="1" end="${quantityPages}">
+                                    <a href="DeluxeHotel?command=filter_rooms&listPage=${pageNumber}"
+                                       class="pagination__link">${pageNumber}</a>
+                                </c:forEach>
+                            </div>
+                        </div>
+                    </c:if>
                 </div>
             </div>
         </div>

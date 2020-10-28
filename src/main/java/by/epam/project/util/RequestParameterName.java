@@ -25,6 +25,8 @@ public class RequestParameterName {
     public static final String ROOM_PLACE_AMOUNT = "place_amount";
     public static final String ROOM_IS_ACTIVE = "is_active";
     public static final String ROOM_TYPE_SORT = "type_sort";
+    public static final String ROOM_LIST_PAGE = "listPage";
+    public static final String PAGINATION_ROOMS = "paginationRooms";
 
     public static final String BOOKING_ID = "bookingId";
     public static final String BOOKING_ARRIVAL_DATE = "arrival_date";

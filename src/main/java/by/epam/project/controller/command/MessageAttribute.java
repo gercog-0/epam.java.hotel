@@ -18,6 +18,7 @@ public class MessageAttribute {
     public static final String BOOKINGS = "bookings";
     public static final String ROOM_DATA = "roomData";
     public static final String SHOW_COMMAND = "showCommand";
+    public static final String MAX_QUANTITY_PAGES = "quantityPages";
 
     /**
     Notification message attribute

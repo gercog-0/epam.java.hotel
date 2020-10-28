@@ -2,6 +2,7 @@ package by.epam.project.controller.command.impl;
 
 import by.epam.project.controller.Router;
 import by.epam.project.controller.command.Command;
+import by.epam.project.controller.command.MessageAttribute;
 import by.epam.project.controller.command.PagePath;
 import by.epam.project.exception.ServiceException;
 import by.epam.project.model.entity.Room;
@@ -29,11 +30,19 @@ public class SortRoomsCommand implements Command {
         Router router;
 
         try {
-            String sortType = request.getParameter(ROOM_TYPE_SORT);
-            List<Room> currentFreeRoomsList = (List<Room>) session.getAttribute(ROOMS);
-            List<Room> newSortedFreeRoomsList = roomService.sortByParameter(currentFreeRoomsList, sortType);
-            session.setAttribute(ROOMS, newSortedFreeRoomsList);
             String currentPage = (String) session.getAttribute(CURRENT_PAGE);
+            String sortType = request.getParameter(ROOM_TYPE_SORT);
+            List<Room> currentRoomsList;
+            String attributeName;
+            if (currentPage.equals(PagePath.BOOKING)) {
+                currentRoomsList = (List<Room>) session.getAttribute(PAGINATION_ROOMS);
+                attributeName = PAGINATION_ROOMS;
+            } else {
+                currentRoomsList = (List<Room>) session.getAttribute(ROOMS);
+                attributeName = ROOMS;
+            }
+            List<Room> sortedRoomsList = roomService.sortByParameter(currentRoomsList, sortType);
+            session.setAttribute(attributeName, sortedRoomsList);
             router = new Router(currentPage);
         } catch (ServiceException exp) {
             LOGGER.error(exp);

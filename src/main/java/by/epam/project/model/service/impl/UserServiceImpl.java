@@ -132,6 +132,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Optional<User> findUserByLogin(String login) throws ServiceException {
+        UserDaoImpl userDao = UserDaoImpl.getInstance();
+        try {
+            return userDao.findByLogin(login);
+        } catch (DaoException exp) {
+            throw new ServiceException(exp);
+        }
+    }
+
+    @Override
     public boolean paymentBooking(User user, double bookingPrice) throws ServiceException {
         UserDaoImpl userDao = UserDaoImpl.getInstance();
         double userBalance = user.getBalance();

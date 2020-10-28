@@ -38,7 +38,7 @@ public class BookingCommand implements Command {
             User currentUser = (User) session.getAttribute(MessageAttribute.USER);
             String roomNumber = request.getParameter(ROOM_NUMBER);
             Optional<Room> foundRoom = roomService.findByNumber(roomNumber);
-            if (foundRoom.isPresent()) {
+            if (foundRoom.isPresent() && foundRoom.get().isActive()) {
                 Room room = foundRoom.get();
                 bookingService.makeBooking(dateFrom, dateTo, currentUser, room);
                 session.removeAttribute(BOOKING_DATE_FROM);

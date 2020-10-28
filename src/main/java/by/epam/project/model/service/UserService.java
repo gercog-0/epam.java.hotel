@@ -75,6 +75,16 @@ public interface UserService {
      */
     Optional<User> findUserByEmail(String email) throws ServiceException;
 
+
+    /**
+     * Find user by login optional.
+     *
+     * @param login the login
+     * @return the optional
+     * @throws ServiceException the service exception
+     */
+    Optional<User> findUserByLogin(String login) throws ServiceException;
+
     /**
      * Deposit money boolean.
      *
