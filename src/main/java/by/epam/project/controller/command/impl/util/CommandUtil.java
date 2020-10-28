@@ -29,5 +29,4 @@ public class CommandUtil {
         ResourceBundle resourceBundle = ResourceBundle.getBundle(RESOURCES_LANGUAGE, currentLocale);
         return resourceBundle.getString(key);
     }
-
 }
