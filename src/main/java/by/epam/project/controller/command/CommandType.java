@@ -5,7 +5,13 @@ import java.util.Set;
 
 import static by.epam.project.controller.command.CommandName.*;
 
+/**
+ * The enum Command type.
+ */
 public enum CommandType {
+    /**
+     * Guest command type.
+     */
     GUEST(EnumSet.of(
             PASSING_HOME,
             CONFIRM_SIGN_UP,
@@ -15,6 +21,9 @@ public enum CommandType {
             PASSING_SIGN_IN,
             PASSING_SIGN_UP
     )),
+    /**
+     * User command type.
+     */
     USER(EnumSet.of(
             PASSING_HOME,
             MAKE_DEPOSIT,
@@ -29,6 +38,9 @@ public enum CommandType {
             SORT_ROOMS,
             SORT_BOOKINGS
     )),
+    /**
+     * Administrator command type.
+     */
     ADMINISTRATOR(EnumSet.of(
             PASSING_HOME,
             LOG_OUT,
@@ -55,6 +67,11 @@ public enum CommandType {
         this.commandNames = commandNames;
     }
 
+    /**
+     * Gets command names.
+     *
+     * @return the command names
+     */
     public Set<CommandName> getCommandNames() {
         return commandNames;
     }

@@ -14,5 +14,6 @@ public class PropertiesMessageKey {
     public static final String PAYMENT_ERROR_MESSAGE = "user_profile.payment_error_message";
     public static final String CREDIT_CARD_ERROR_MESSAGE = "payment_card.error_message";
 
-    private PropertiesMessageKey(){}
+    private PropertiesMessageKey() {
+    }
 }

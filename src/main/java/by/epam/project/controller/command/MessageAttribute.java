@@ -21,7 +21,7 @@ public class MessageAttribute {
     public static final String MAX_QUANTITY_PAGES = "quantityPages";
 
     /**
-    Notification message attribute
+     * Notification message attribute
      */
     public static final String ACTIVATE_ROOM_NUMBER = "activateRoomNumber";
     public static final String DISABLE_ROOM_NUMBER = "disableRoomNumber";

@@ -37,7 +37,6 @@ public enum CommandName {
 
     private final Command command;
 
-
     CommandName(Command command) {
         this.command = command;
 
