@@ -7,10 +7,19 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+
+    <jsp-config>
+        <taglib>
+            <taglib-uri>customTags</taglib-uri>
+            <taglib-location>WEB-INF/tld/custom.tld</taglib-location>
+        </taglib>
+    </jsp-config>
+
     <error-page>
         <error-code>404</error-code>
         <location>/jsp/error404.jsp</location>
     </error-page>
+
     <error-page>
         <error-code>500</error-code>
         <location>/jsp/error500.jsp</location>
@@ -44,6 +53,7 @@
         <servlet-name>frontServlet</servlet-name>
         <servlet-class>by.epam.project.controller.FrontController</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>frontServlet</servlet-name>
         <url-pattern>/DeluxeHotel</url-pattern>
