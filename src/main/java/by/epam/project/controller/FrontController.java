@@ -15,7 +15,7 @@ import java.io.IOException;
 import static by.epam.project.util.RequestParameterName.*;
 
 /**
- * The type Servlet controller.
+ * Servlet controller.
  */
 @WebServlet("/controller")
 public class FrontController extends HttpServlet {

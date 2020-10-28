@@ -21,6 +21,9 @@ public class Router {
     }
 
     private Type currentType = Type.FORWARD;
+    /**
+     * Default page
+     */
     private String currentPage = PagePath.HOME;
 
     /**
