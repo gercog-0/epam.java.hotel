@@ -4,7 +4,6 @@ import by.epam.project.controller.Router;
 import by.epam.project.controller.command.Command;
 import by.epam.project.controller.command.PagePath;
 import by.epam.project.model.entity.Room;
-import by.epam.project.model.entity.User;
 import by.epam.project.exception.ServiceException;
 import by.epam.project.model.service.impl.RoomServiceImpl;
 import org.apache.logging.log4j.LogManager;
@@ -17,7 +16,7 @@ import java.util.List;
 import static by.epam.project.util.RequestParameterName.ROOMS;
 
 /**
- * The type Passing to rooms admin command.
+ * Passing to rooms admin command.
  */
 public class PassingToRoomsAdminCommand implements Command {
 

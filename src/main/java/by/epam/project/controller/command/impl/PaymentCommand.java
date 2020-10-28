@@ -21,7 +21,8 @@ import java.util.Optional;
 import static by.epam.project.util.RequestParameterName.BOOKING_ID;
 
 /**
- * The type Payment command.
+ * Payment command.
+ * The command is responsible for paying for an active booking.
  */
 public class PaymentCommand implements Command {
     private BookingServiceImpl bookingService = BookingServiceImpl.getInstance();

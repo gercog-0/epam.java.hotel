@@ -7,7 +7,7 @@ import by.epam.project.controller.command.PagePath;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * The type Passing to filter rooms command.
+ * Passing to filter rooms command.
  */
 public class PassingToFilterRoomsCommand implements Command {
 

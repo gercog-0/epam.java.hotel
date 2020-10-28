@@ -11,7 +11,8 @@ import javax.servlet.http.HttpSession;
 import static by.epam.project.util.RequestParameterName.*;
 
 /**
- * The type Change language command.
+ * Change language command.
+ * The command is responsible for changing the user interface language.
  */
 public class ChangeLanguageCommand implements Command {
     private static final String EN_LANGUAGE = "en";

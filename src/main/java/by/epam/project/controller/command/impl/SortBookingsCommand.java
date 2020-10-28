@@ -17,7 +17,8 @@ import java.util.List;
 import static by.epam.project.util.RequestParameterName.*;
 
 /**
- * The type Sort bookings command.
+ * Sort bookings command.
+ * The team is responsible for sorting bookings.
  */
 public class SortBookingsCommand implements Command {
     private BookingServiceImpl bookingService = BookingServiceImpl.getInstance();

@@ -17,13 +17,13 @@ import java.util.Optional;
 import static by.epam.project.util.RequestParameterName.ROOM_NUMBER;
 
 /**
- * The type Activate room command.
+ * Activate room command.
+ * This command is responsible for activating the hotel room.
  */
 public class ActivateRoomCommand implements Command {
     private RoomServiceImpl roomService = RoomServiceImpl.getInstance();
 
     private static final Logger LOGGER = LogManager.getLogger();
-
 
     @Override
     public Router execute(HttpServletRequest request) {

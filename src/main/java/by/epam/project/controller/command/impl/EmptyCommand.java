@@ -7,7 +7,9 @@ import by.epam.project.controller.command.PagePath;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * The type Empty command.
+ * Empty command.
+ * This command is executed if the request passes a
+ * command that does not exist in the system.
  */
 public class EmptyCommand implements Command {
     @Override

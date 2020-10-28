@@ -5,10 +5,9 @@ import by.epam.project.controller.command.Command;
 import by.epam.project.controller.command.PagePath;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 /**
- * The type Passing to home command.
+ * Passing to home command.
  */
 public class PassingToHomeCommand implements Command {
     @Override

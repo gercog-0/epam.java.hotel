@@ -16,7 +16,8 @@ import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 /**
- * The type Sign in command.
+ * Sign in command.
+ * The team is responsible for authorizing the user to the system.
  */
 public class SignInCommand implements Command {
     private UserServiceImpl userService = UserServiceImpl.getInstance();
@@ -36,10 +37,10 @@ public class SignInCommand implements Command {
                 User user = currentUser.get();
                 session.removeAttribute(MessageAttribute.SIGN_IN_ERROR_MESSAGE);
                 if (user.isBanned()) {
-                    request.setAttribute(MessageAttribute.BANNED_USER_ACCOUNT ,user.getLogin());
+                    request.setAttribute(MessageAttribute.BANNED_USER_ACCOUNT, user.getLogin());
                     router.setCurrentPage(PagePath.NOTIFICATION);
                 } else if (!user.isActivated()) {
-                    request.setAttribute(MessageAttribute.NOT_ACTIVATED_USER_ACCOUNT ,user.getLogin());
+                    request.setAttribute(MessageAttribute.NOT_ACTIVATED_USER_ACCOUNT, user.getLogin());
                     router.setCurrentPage(PagePath.NOTIFICATION);
                 } else {
                     session.setAttribute(MessageAttribute.USER, user);

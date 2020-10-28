@@ -7,7 +7,7 @@ import by.epam.project.controller.command.PagePath;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * The type Passing to sign in command.
+ * Passing to sign in command.
  */
 public class PassingToSignInCommand implements Command {
     @Override

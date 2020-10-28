@@ -7,9 +7,9 @@ import by.epam.project.controller.command.CommandName;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-
 /**
- * The type Log out command.
+ * Log out command.
+ * This command allows an authorized user to log out of the system.
  */
 public class LogOutCommand implements Command {
     @Override

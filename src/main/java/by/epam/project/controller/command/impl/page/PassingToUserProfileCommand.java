@@ -20,7 +20,7 @@ import java.util.Optional;
 import static by.epam.project.util.RequestParameterName.*;
 
 /**
- * The type Passing to user profile command.
+ * Passing to user profile command.
  */
 public class PassingToUserProfileCommand implements Command {
     private BookingServiceImpl bookingService = BookingServiceImpl.getInstance();

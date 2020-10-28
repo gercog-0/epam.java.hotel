@@ -20,7 +20,9 @@ import java.util.Map;
 import static by.epam.project.util.RequestParameterName.*;
 
 /**
- * The type Add room command.
+ * Add room command.
+ * This command allows you to add a hotel number.
+ * By default, the number is active.
  */
 public class AddRoomCommand implements Command {
     private RoomServiceImpl roomService = RoomServiceImpl.getInstance();

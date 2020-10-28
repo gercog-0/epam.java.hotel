@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * The type Show all bookings command.
+ * Show all bookings command.
+ * The team is responsible for submitting all existing hotel bookings.
  */
 public class ShowAllBookingsCommand implements Command {
     private BookingServiceImpl bookingService = BookingServiceImpl.getInstance();

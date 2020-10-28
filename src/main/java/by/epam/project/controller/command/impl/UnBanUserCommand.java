@@ -18,7 +18,8 @@ import java.util.Optional;
 import static by.epam.project.util.RequestParameterName.*;
 
 /**
- * The type Un ban user command.
+ * Un ban user command.
+ * The command is responsible for unblocking the user in the system.
  */
 public class UnBanUserCommand implements Command {
     private UserService userService = UserServiceImpl.getInstance();
@@ -35,7 +36,7 @@ public class UnBanUserCommand implements Command {
                 userService.unBanUser(loginUser);
                 request.setAttribute(MessageAttribute.UNBAN_LOGIN_USER, loginUser);
                 router = new Router(PagePath.NOTIFICATION);
-            } else{
+            } else {
                 router = new Router(PagePath.ERROR_404);
             }
         } catch (ServiceException exp) {

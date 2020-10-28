@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
- * The type Passing to waiting bookings admin command.
+ * Passing to waiting bookings admin command.
  */
 public class PassingToWaitingBookingsAdminCommand implements Command {
     private BookingServiceImpl bookingService = BookingServiceImpl.getInstance();
@@ -30,7 +30,7 @@ public class PassingToWaitingBookingsAdminCommand implements Command {
         try {
             Booking.Status status = Booking.Status.WAITING;
             List<Booking> waitingBooking = bookingService.findBookingsByStatus(status.getNameStatus());
-            session.setAttribute(MessageAttribute.BOOKINGS,waitingBooking);
+            session.setAttribute(MessageAttribute.BOOKINGS, waitingBooking);
             router = new Router(PagePath.WAITING_BOOKING_ADMIN);
         } catch (ServiceException exp) {
             LOGGER.error(exp);

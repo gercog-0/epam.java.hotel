@@ -4,7 +4,6 @@ import by.epam.project.controller.Router;
 import by.epam.project.controller.command.Command;
 import by.epam.project.controller.command.MessageAttribute;
 import by.epam.project.controller.command.PagePath;
-import by.epam.project.controller.command.PropertiesMessageKey;
 import by.epam.project.exception.ServiceException;
 import by.epam.project.model.service.UserService;
 import by.epam.project.model.service.impl.UserServiceImpl;
@@ -15,9 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import static by.epam.project.util.RequestParameterName.*;
 
-
 /**
- * The type Confirm sign up command.
+ * Confirm sign up command.
+ * The command is responsible for confirming registration in the system
  */
 public class ConfirmSignUpCommand implements Command {
     private UserService userService = UserServiceImpl.getInstance();

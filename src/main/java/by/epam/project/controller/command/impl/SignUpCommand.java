@@ -19,7 +19,8 @@ import java.util.Map;
 import static by.epam.project.util.RequestParameterName.*;
 
 /**
- * The type Sign up command.
+ * Sign up command.
+ * The team is responsible for registering the user in the system.
  */
 public class SignUpCommand implements Command {
     private UserServiceImpl service = UserServiceImpl.getInstance();

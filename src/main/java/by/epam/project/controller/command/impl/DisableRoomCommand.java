@@ -17,7 +17,8 @@ import java.util.Optional;
 import static by.epam.project.util.RequestParameterName.ROOM_NUMBER;
 
 /**
- * The type Disable room command.
+ * Disable room command.
+ * The team is responsible for changing the status of the hotel room as inactive.
  */
 public class DisableRoomCommand implements Command {
     private RoomServiceImpl roomService = RoomServiceImpl.getInstance();
@@ -43,5 +44,4 @@ public class DisableRoomCommand implements Command {
         }
         return router;
     }
-
 }

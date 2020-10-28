@@ -19,7 +19,8 @@ import java.util.Optional;
 import static by.epam.project.util.RequestParameterName.*;
 
 /**
- * The type Booking command.
+ * Booking command.
+ * This command is responsible for booking a hotel room.
  */
 public class BookingCommand implements Command {
     private BookingServiceImpl bookingService = BookingServiceImpl.getInstance();
