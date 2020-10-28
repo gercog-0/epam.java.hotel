@@ -2,7 +2,7 @@ package by.epam.project.model.dao;
 
 public class SqlQuery {
     /**
-     *  QUERY TO TABLE WITH USERS
+     * QUERY TO TABLE WITH USERS
      */
     public static final String FIND_ALL_USERS = "SELECT userId, login, email, name, surname, balance, " +
             "phone, is_banned, is_activated, roleId FROM users WHERE roleId = ?";
@@ -25,7 +25,7 @@ public class SqlQuery {
 
 
     /**
-     *  QUERY TO TABLE WITH ROOMS
+     * QUERY TO TABLE WITH ROOMS
      */
     public static final String ADD_ROOM = "INSERT into rooms (roomNumber,comfort,price,place_amount, is_active) " +
             "VALUES (?,?,?,?,?)";
@@ -49,7 +49,7 @@ public class SqlQuery {
             "'rejected' AND roomId = roomId_fk AND ((? BETWEEN arrival_date AND departure_date) OR (? BETWEEN arrival_date AND departure_date)))";
 
     /**
-     *  QUERY TO TABLE WITH BOOKINGS
+     * QUERY TO TABLE WITH BOOKINGS
      */
     public static final String ADD_BOOKING = "INSERT INTO bookings (arrival_date, departure_date, booking_status, " +
             "userId_fk, roomId_fk, total_price) VALUES(?,?,?,?,?,?)";
