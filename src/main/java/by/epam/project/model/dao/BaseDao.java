@@ -1,6 +1,5 @@
 package by.epam.project.model.dao;
 
-
 import by.epam.project.model.entity.Booking;
 import by.epam.project.model.entity.Entity;
 import by.epam.project.exception.DaoException;

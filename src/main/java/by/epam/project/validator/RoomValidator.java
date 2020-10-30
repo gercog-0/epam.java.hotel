@@ -1,6 +1,5 @@
 package by.epam.project.validator;
 
-
 import by.epam.project.model.entity.Room;
 
 import java.util.HashMap;

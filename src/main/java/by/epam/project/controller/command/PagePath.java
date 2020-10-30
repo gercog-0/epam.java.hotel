@@ -1,9 +1,9 @@
 package by.epam.project.controller.command;
 
+/**
+ * This class contains paths to JSP pages
+ */
 public class PagePath {
-    /**
-     * This class contains paths to JSP pages
-     */
     public final static String INDEX = "/index.jsp";
     public final static String HOME = "jsp/home.jsp";
     public final static String SIGN_IN = "jsp/signIn.jsp";
@@ -19,6 +19,9 @@ public class PagePath {
     public final static String WAITING_BOOKING_ADMIN = "jsp/waitingBookingsAdmin.jsp";
     public final static String ROOMS_ADMIN = "jsp/roomsAdmin.jsp";
     public final static String USERS_ADMIN = "jsp/usersAdmin.jsp";
+
+
+    public static final String EMAIL_ACTIVATION_LINK = "http://localhost:8080/DeluxeHotel?command=confirm_sign_up&login=";
 
     private PagePath(){}
 }

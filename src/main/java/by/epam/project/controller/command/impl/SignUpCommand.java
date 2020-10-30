@@ -25,7 +25,6 @@ import static by.epam.project.util.RequestParameterName.*;
 public class SignUpCommand implements Command {
     private UserServiceImpl service = UserServiceImpl.getInstance();
 
-    private static final String EMAIL_ACTIVATION_LINK = "http://localhost:8080/DeluxeHotel?command=confirm_sign_up&login=";
     private static final Logger LOGGER = LogManager.getLogger();
 
     @Override
@@ -58,7 +57,7 @@ public class SignUpCommand implements Command {
                 String emailBodyWithLocale = CommandUtil.makePartWithLocale(locale, PropertiesMessageKey.EMAIL_BODY);
 
                 emailService.makeAndSendActivationEmail(newUser, emailSubjectWithLocale,
-                        emailBodyWithLocale, EMAIL_ACTIVATION_LINK);
+                        emailBodyWithLocale, PagePath.EMAIL_ACTIVATION_LINK);
                 request.setAttribute(MessageAttribute.SIGN_UP_MESSAGE, login);
                 router = new Router(PagePath.NOTIFICATION);
             } else {
@@ -68,7 +67,6 @@ public class SignUpCommand implements Command {
         } catch (ServiceException exp) {
             LOGGER.error(exp);
             router = new Router(PagePath.ERROR_500);
-
         }
         return router;
     }

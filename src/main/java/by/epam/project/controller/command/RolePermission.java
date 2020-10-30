@@ -8,7 +8,7 @@ import static by.epam.project.controller.command.CommandName.*;
 /**
  * The enum Command type.
  */
-public enum CommandType {
+public enum RolePermission {
     /**
      * Guest command type.
      */
@@ -63,7 +63,7 @@ public enum CommandType {
 
     private final Set<CommandName> commandNames;
 
-    CommandType(Set<CommandName> commandNames) {
+    RolePermission(Set<CommandName> commandNames) {
         this.commandNames = commandNames;
     }
 

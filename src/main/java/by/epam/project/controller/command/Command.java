@@ -11,6 +11,15 @@ import static by.epam.project.util.RequestParameterName.*;
  */
 public interface Command {
     /**
+     * The constant REDIRECT_QUESTION_MARK.
+     */
+    String REDIRECT_QUESTION_MARK = "?";
+    /**
+     * The constant REDIRECT_EQUAL_SIGN.
+     */
+    String REDIRECT_EQUAL_SIGN = "=";
+
+    /**
      * Execute router.
      *
      * @param request the request
@@ -26,8 +35,6 @@ public interface Command {
      * @return the string
      */
     default String createRedirectURL(HttpServletRequest request, String commandName) {
-        final String REDIRECT_QUESTION_MARK = "?";
-        final String REDIRECT_EQUAL_SIGN = "=";
         String redirectUrl = request.getContextPath() + request.getServletPath()
                 + REDIRECT_QUESTION_MARK + COMMAND + REDIRECT_EQUAL_SIGN + commandName;
         return redirectUrl;
