@@ -1,4 +1,4 @@
-# Описание проекта / Веб проект - электронная гостиница
+# РУС / Описание проекта / Веб проект - электронная гостиница
 # Автор: Янушкевич Иван
 -------------------------------------------------------
 
@@ -43,7 +43,7 @@
 - Сортировка пользователей по имени и логину
 - Выход из аккаунта
 
-# Project description / Web application-electronic hotel
+# EN / Project description / Web application-electronic hotel
 # Created by Ivan Yanushkevich
 --------------------------------------------------------
 * General information:
