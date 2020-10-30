@@ -72,7 +72,7 @@ it is confirmed by the administrator. View all previous bookings.
 - View your current balance and login
 - Log out of your account
 
-*** administrator Functionality:
+*** Administrator functionality:
 - Change the interface language
 - View all bookings (current, previously made by users)
 - Sort bookings by date
