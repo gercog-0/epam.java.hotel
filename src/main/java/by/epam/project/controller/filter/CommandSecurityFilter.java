@@ -44,14 +44,9 @@ public class CommandSecurityFilter implements Filter {
         }
         Set<CommandName> commandNameSet;
         switch (userRole) {
-            case USER:
-                commandNameSet = RolePermission.USER.getCommandNames();
-                break;
-            case ADMINISTRATOR:
-                commandNameSet = RolePermission.ADMINISTRATOR.getCommandNames();
-                break;
-            default:
-                commandNameSet = RolePermission.GUEST.getCommandNames();
+            case USER -> commandNameSet = RolePermission.USER.getCommandNames();
+            case ADMINISTRATOR -> commandNameSet = RolePermission.ADMINISTRATOR.getCommandNames();
+            default -> commandNameSet = RolePermission.GUEST.getCommandNames();
         }
         if (!commandNameSet.contains(currentCommandName)) {
             LOGGER.error("Request error " + currentCommandName);

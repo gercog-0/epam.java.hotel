@@ -16,7 +16,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 
 /**
- * The enum Connection pool.
+ * Connection pool.
  */
 public enum ConnectionPool {
     /**
